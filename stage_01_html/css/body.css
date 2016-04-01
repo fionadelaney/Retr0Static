@@ -1,0 +1,168 @@
+/* ------- body ------- */
+
+body{
+	background-image:url(../brown_strands.jpg);
+}
+
+#aside_index {
+	font-family: Helvetica, Arial, sans-serif;
+	border: 4px;
+	line-height: 30px;
+	background-color: none;
+	width: 160px;
+	float: left;
+	padding: 20px 20px 20px 20px;
+	margin: 10px 0px 0px 20px;
+	text-align:right;
+}
+
+#aside_about {
+	font-family: Helvetica, Arial, sans-serif;
+	border: 4px;
+	line-height: 30px;
+	background-color: none;
+	width: 130px;
+	height: 120px;
+	float: left;
+	padding: 60px 20px 20px 20px;
+	margin: 40px 0px 0px 20px;
+	text-align:center;
+}
+
+
+#aside_screen {
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 30px;
+	background-color: none;
+	width: 120px;
+	height: 120px;
+	float: left;
+	padding: 20px;
+	margin: 25px;
+}
+
+#aside_insight {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: .9em;
+	line-height: 1.4em;
+	color:lightyellow;
+	background-color:#1A5F7C;
+	width: 200px;
+	float: left;
+	padding: 10px;
+	margin:70px 10px 40px 30px;
+	border-radius:8px;
+}
+
+	
+#section_index {
+	font-family: courier, "Courier New";
+	font-size: 1.2em;
+	color: #1A5F7C;
+	width:700px;
+	float: left;
+	padding: 4px;
+	margin: 70px 10px 10px 30px;
+	background-color:#C9DBFF;
+	border-radius:0 0 8px 8px;
+	text-align: center;	
+}
+
+blockquote p::before {
+	content:url("buttons/q-mark99-small.png");
+}
+blockquote p::after {
+	content:url("buttons/q-mark66-small.png");
+}
+
+
+#section_about {
+	font-family: courier, "Courier New";
+	font-size: 1.6em;
+	color: #1A5F7C;
+	width:950px;
+	float: center;
+	padding: 12px 0 30px 30px;
+	margin: 70px 10px 40px 30px;
+	background-color:#C9DBFF;
+	border-radius: 0px 0px 8px 8px;
+	text-align: left;
+}
+
+
+#section_screen {
+	font-family: courier, "Courier New";
+	font-size: 1em;
+	color: #1A5F7C;
+	width:600px;
+	float: left;
+	padding: 20px;
+	margin: 70px 0px 40px 30px;
+	background-color:#C9DBFF;
+	border-radius:8px;
+	text-align: left;
+}
+
+
+#section_insight {
+	font-family: courier, "Courier New";
+	font-size: 1em;
+	color: #1A5F7C;
+	width:600px;
+	float: left;
+	padding: 20px;
+	margin: 70px 0px 40px 30px;
+	background-color:#C9DBFF;
+	border-radius:8px;
+	text-align: left;
+}
+
+
+#main_index {
+	font-family: Helvetica, Arial, sans-serif;
+	background-color:none;
+	width: 180px;
+	float: right;
+	padding: 10px;
+	margin:70px 10px 0px 30px;
+	text-align: center;
+}
+
+#main_screen {
+	font-family: courier, "Courier New";
+	background-color: #FF851A;
+	width: 180px;
+	float: right;
+	padding: 20px;
+	margin:70px 10px 40px 30px;
+	text-align: center;
+	border-radius:8px;
+	color:lightyellow;
+}
+
+
+#main_image{
+	float: left;
+	padding: 2px;
+	border: .2px;	
+}
+
+
+#article_insight {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: .9em;
+	color: lightyellow;
+	line-height: 1.4em;
+	width:200px;
+	padding: 10px;
+	margin:70px 10px 40px 0px;
+	border-radius: 8px;
+	float: right;
+	background-color: #FF851A;
+}
+
+#article_insight .img {
+	padding: .2em;
+	margin: 30 0 10 0;
+}
+

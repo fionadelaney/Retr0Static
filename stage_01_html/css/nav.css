@@ -1,0 +1,48 @@
+/* ------- nav ------- */
+#nav .button  {
+	border: 2px groove #cccccc;
+	border-radius: 20px;
+	width: 80px;
+	padding: 8px 20px;
+	margin:28px;
+	color: #1A5F7C;
+	background-color:none;
+	font-family: courier, "Courier New";
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration:none;
+	}
+	
+#nav a.button:link  {
+	color: #1A5F7C;
+	}
+	
+#nav a.button:visited {
+	color:#1A5F7C;
+	background-color: #cccccc;
+	border: 0px groove #cccccc;
+	border-radius: 8px;
+	}
+	
+#nav a.button:hover {
+	color:#1A5F7C;
+	border: 3px outset #cccccc;
+	background-color:#C9DBFF;
+	}
+	
+.current_page {
+	border: 2px groove #cccccc;
+	border-radius: 20px;
+		border: 2px outset #cccccc;
+	width: 60px;
+	padding: 8px 20px;
+	margin: 12px;
+	color: #1A5F7C;
+	background-color:#C9DBFF;
+	font-family: courier, "Courier New";
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration:none;
+}	

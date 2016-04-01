@@ -48,7 +48,7 @@ body{
 .current_page {
 	border: 2px groove #cccccc;
 	border-radius: 20px;
-		border: 2px outset #cccccc;
+	border: 2px outset #cccccc;
 	width: 60px;
 	padding: 8px 20px;
 	margin: 12px;
