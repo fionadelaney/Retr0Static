@@ -54,6 +54,17 @@ body{
 	border-radius:8px;
 }
 
+
+#aside_shop {
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 30px;
+	background-color: none;
+	width: 80px;
+	height: 120px;
+	float: left;
+	padding: 20px;
+	margin: 25px;
+}
 	
 #section_index {
 	font-family: courier, "Courier New";
@@ -117,6 +128,33 @@ blockquote p::after {
 	text-align: left;
 }
 
+#section_shop {
+	font-family: courier, "Courier New";
+	font-size: 1em;
+	color: #1A5F7C;
+	width:700px;
+	float: left;
+	padding: 20px;
+	margin: 70px 0px 40px 30px;
+	background-color:#C9DBFF;
+	border-radius:8px;
+	text-align: center;
+}
+
+/* ------- table contents --------- */
+table, th, td, tr {
+    border: solid black 0.1rem
+}
+
+td {
+    width: 7rem;
+    text-align: center;
+    padding: 4px;
+    margin: 2px;
+}
+
+
+
 
 #main_index {
 	font-family: Helvetica, Arial, sans-serif;
@@ -145,6 +183,16 @@ blockquote p::after {
 	float: left;
 	padding: 2px;
 	border: .2px;	
+}
+
+#main_shop {
+	font-family: Helvetica, Arial, sans-serif;
+	background-color:none;
+	width: 180px;
+	float: right;
+	padding: 0px;
+	margin:55px 10px 40px 30px;
+	text-align: left;
 }
 
 
