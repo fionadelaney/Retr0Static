@@ -156,7 +156,7 @@ blockquote p::after {
 
 #section_about {
 	font-family: courier, "Courier New";
-	font-size: 2.2em;
+	font-size: 1.6em;
 	color: #1A5F7C;
 	width:950px;
 	float: center;
@@ -180,7 +180,7 @@ blockquote p::after {
 	background-color:#C9DBFF;
 	border-radius:8px;
 	text-align: left;
-
+}
 
 
 #section_insight {
@@ -208,6 +208,17 @@ blockquote p::after {
 	text-align: center;
 }
 
+#main_screen {
+	font-family: courier, "Courier New";
+	background-color: #FF851A;
+	width: 180px;
+	float: right;
+	padding: 20px;
+	margin:70px 10px 40px 30px;
+	text-align: center;
+	border-radius:8px;
+	color:lightyellow;
+}
 
 
 #main_image{
