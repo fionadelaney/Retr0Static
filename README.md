@@ -18,7 +18,9 @@ basic flat HTML verson of the website
 
 <hr>
 Stage02-php
-just changed the ```.html``` files to end in ```.php```
+
+
+changed the ```.html``` files to end in ```.php```
 
 <hr>
 
