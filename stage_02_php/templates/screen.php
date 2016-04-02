@@ -1,28 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Retr0Static | Screen</title>
-    <style>
-        @import "css/body.css";
-        @import "css/nav.css";
-        @import "css/head_foot.css";
-    </style>
+<?php
+require_once __DIR__ . '/../templates/header1.inc.php';
+//-------------------------------------------
 
-</head>
-<body>
+//<!DOCTYPE html>
+//<html lang="en">
+//<head>
+	//<meta charset="utf-8">
+	//<title>Retr0Static | Screen</title>
+   // <style>
+      //  @import "css/body.css";
+      //  @import "css/nav.css";
+      //  @import "css/head_foot.css";
+   // </style>
+
+//</head>
+//<body>
+
+?>
 <div id="header">
 <h1>Retr0Static | Games On-Screen</h1>
 </div>
 
 <div align="center" id="nav">
 
-  <a href="Index.html" class="button">Home</a>
-  <a href="About.html"class="button">About</a>
-  <a href="Screen.html" class="current_page">Screen</a>
-  <a href="News.html" class="button">News</a>
-  <a href="Insight.html"class="button">Insight</a>
-  <a href="Shop.html"class="button">Shop</a>
+  <a href="index.php" class="button">Home</a>
+  <a href="about.php?action=about"class="button">About</a>
+  <a href="screen.php?action=screen" class="current_page">Screen</a>
+  <a href="news.php?action=news" class="button">News</a>
+  <a href="insight.php?action=insight"class="button">Insight</a>
+  <a href="shop.php?action=shop"class="button">Shop</a>
 </div>
 
 
@@ -75,10 +81,18 @@
 <td><a href="http://www.codemystics.com/halo2600/" class="video_link" target="blank"><img src="images/halo.jpg" width="100%" height="auto"></a></td>
 </div>
 
-<div id="footer">
-<p>
-Copyright@ <a href="mailto:B00092671@student.itb.ie" target="blank">Fiona Delaney</a> 2015	<a href="sitemap.html" class="footerbutton">Sitemap</a></p>
-</div>
 
-</body>
-</html>
+<?php
+//-------------------------------------------
+require_once __DIR__ . '/../templates/footer.inc.php';
+
+//  don't close the PHP tags
+
+
+//<div id="footer">
+//<p>
+//Copyright@ Fiona Delaney 2015	<a href="sitemap.php?action=sitemap" class="footerbutton">Sitemap</a></p>
+//</div>
+
+//</body>
+//</html>

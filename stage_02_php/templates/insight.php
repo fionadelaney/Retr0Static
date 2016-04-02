@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Retr0Static Insights</title>
-    <style>
-        @import "css/body.css";
-        @import "css/nav.css";
-        @import "css/head_foot.css";
-    </style>
+<?php
+require_once __DIR__ . '/../templates/header1.inc.php';
+//-------------------------------------------
 
-</head>
+//<!DOCTYPE html>
+//<html lang="en">
+//<head>
+	//<meta charset="utf-8">
+	//<title>Retr0Static | News</title>
+   // <style>
+      //  @import "css/body.css";
+      //  @import "css/nav.css";
+      //  @import "css/head_foot.css";
+   // </style>
 
-<body>
+//</head>
+//<body>
+
+?>
 <div id="header">
 <h1>Retr0Static | Insight</h1>
 </div>
 
 <div align="center" id="nav">
 
-  <a href="Index.html" class="button">Home</a>
-  <a href="About.html"class="button">About</a>
-  <a href="Screen.html" class="button">Screen</a>
-  <a href="News.html" class="button">News</a>
-  <a href="Insight.html"class="current_page">Insight</a>
-  <a href="Shop.html"class="button">Shop</a>
+  <a href="index.php" class="button">Home</a>
+  <a href="about.php?action=about"class="button">About</a>
+  <a href="screen.php?action=screen" class="button">Screen</a>
+  <a href="news.php?action=news" class="button">News</a>
+  <a href="insight.php?action=insight"class="current_page">Insight</a>
+  <a href="shop.php?action=shop"class="button">Shop</a>
 </div>
 
 
@@ -121,10 +126,17 @@ Read more <a href="https://www.nyfa.edu/student-resources/how-to-write-a-video-g
 </p>
 </div>
 
-<div id="footer">
-<p>
-Copyright@ <a href="mailto:B00092671@student.itb.ie" target="blank">Fiona Delaney</a> 2015	<a href="sitemap.html" class="footerbutton">Sitemap</a></p>
-</div>
+<?php
+//-------------------------------------------
+require_once __DIR__ . '/../templates/footer.inc.php';
 
-</body>
-</html>
+//  don't close the PHP tags
+
+
+//<div id="footer">
+//<p>
+//Copyright@ Fiona Delaney 2015	<a href="sitemap.php?action=sitemap" class="footerbutton">Sitemap</a></p>
+//</div>
+
+//</body>
+//</html>
