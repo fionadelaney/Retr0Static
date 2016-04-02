@@ -31,14 +31,17 @@ body{
 
 
 #aside_screen {
-	font-family: Helvetica, Arial, sans-serif;
 	line-height: 30px;
-	background-color: none;
-	width: 120px;
-	height: 120px;
+	background-color: #C9DBFF;
+	font-family: courier, "Courier New";
+	font-size: 1em;
+	color:#1A5F7C;
+	width: 200px;
 	float: left;
 	padding: 20px;
-	margin: 25px;
+	margin:70px 10px 40px 10px;
+	text-align: left;
+	border-radius:8px;
 }
 
 #aside_insight {
@@ -104,12 +107,12 @@ blockquote p::after {
 #section_screen {
 	font-family: courier, "Courier New";
 	font-size: 1em;
-	color: #1A5F7C;
+	color:lightyellow;
 	width:600px;
 	float: left;
 	padding: 20px;
-	margin: 70px 0px 40px 30px;
-	background-color:#C9DBFF;
+	margin: 70px 0px 40px 10px;
+	background-color:#1A5F7C;
 	border-radius:8px;
 	text-align: left;
 }
@@ -149,11 +152,9 @@ table, th, td, tr {
 td {
     width: 7rem;
     text-align: center;
-    padding: 4px;
+    padding: 6px;
     margin: 2px;
 }
-
-
 
 
 #main_index {
@@ -172,7 +173,7 @@ td {
 	width: 180px;
 	float: right;
 	padding: 20px;
-	margin:70px 10px 40px 30px;
+	margin:70px 10px 40px 10px;
 	text-align: center;
 	border-radius:8px;
 	color:lightyellow;
