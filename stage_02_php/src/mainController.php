@@ -2,7 +2,7 @@
 
 function aboutAction()
 {
-    $pageTitle = 'About Us';
+    $pageTitle = 'About';
     require_once __DIR__ . '/../templates/about.php';
 }
 

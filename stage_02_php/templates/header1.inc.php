@@ -4,9 +4,9 @@
     <title>Retr0Static | <?= $pageTitle ?></title>
     <meta charset="utf-8">
     <style>
-        @import "css/basic.css";
+        @import "css/body.css";
         @import "css/nav.css";
-        @import "css/footer.css";
+        @import "css/head_foot.css";
     </style>
 </head>
 <body>
