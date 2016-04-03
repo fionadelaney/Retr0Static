@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../templates/header1.inc.php';
+require_once __DIR__ . '/../templates/nav.inc.php';
 //-------------------------------------------
 
 //<!DOCTYPE html>
@@ -16,28 +17,30 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 //</head>
 //<body>
 
+//*-------------------------
+
+//  <div align="center" id="nav">
+//  <a href="index.php" class="button">Home</a>
+//  <a href="about.php?action=about"class="button">About</a>
+//  <a href="screen.php?action=screen" class="button">Screen</a>
+//  <a href="news.php?action=news" class="button">News</a>
+//  <a href="insight.php?action=insight"class="current_page">Insight</a>
+//  <a href="shop.php?action=shop"class="button">Shop</a>
+//  </div>
+
+//*-------------------------
+
+
 ?>
 <div id="header">
 <h1>Retr0Static | Insight</h1>
 </div>
 
-<div align="center" id="nav">
-
-  <a href="index.php" class="button">Home</a>
-  <a href="about.php?action=about"class="button">About</a>
-  <a href="screen.php?action=screen" class="button">Screen</a>
-  <a href="news.php?action=news" class="button">News</a>
-  <a href="insight.php?action=insight"class="current_page">Insight</a>
-  <a href="shop.php?action=shop"class="button">Shop</a>
-</div>
-
-
-
 <div id="aside_insight">
 <p>
 <h3>Annie Atkins award-winning graphic designer talks about the precarity and innovation inherent in a career in design</h3>
 
-<img src="images/Annie-Atkins-Grand-Budapest-Hotel-int-.9.jpg" alt="Grand Budapest Hotel pic" width="100%" height="100%">
+<img src="../public/images/Annie-Atkins-Grand-Budapest-Hotel-int-.9.jpg" alt="Grand Budapest Hotel pic" width="100%" height="100%">
 <br>
 If you've seen Wes Anderson’s very pink and very meticulous Grand Budapest Hotel you will be aware of how visually complex it is.<br>
 
@@ -46,7 +49,7 @@ In film [or game design], a graphic designer plans and creates every item that w
 
 <br> 
 <br>
-<img src="images/cakebox.gif" alt="Grand Budapest Hotel pic" width="100%" height="100%">
+<img src="../public/images/cakebox.gif" alt="Grand Budapest Hotel pic" width="100%" height="100%">
 <br>
 On Budapest, Dublin-based designer Annie Atkins found herself faced with hundreds of designed elements that needed to be created.
 
@@ -55,7 +58,7 @@ On Budapest, Dublin-based designer Annie Atkins found herself faced with hundred
 <br>
 <br>
 <a href="http://create.adobe.com/2015/12/2/the_secret_world_of_annie_atkins_graphic_designer_for_films.html" class="button" target="_blank">
-<img src="images/character.jpg" alt="Grand Budapest Hotel pic" width="100%" height="100%"></a>
+<img src="../public/images/character.jpg" alt="Grand Budapest Hotel pic" width="100%" height="100%"></a>
 <br>
 <br>
 </p>
@@ -66,7 +69,7 @@ On Budapest, Dublin-based designer Annie Atkins found herself faced with hundred
 
 <p>
 
-<img src="images/3d_gameHER.jpg" alt="Rey pic" width="100%" height="100%">
+<img src="../public/images/3d_gameHER.jpg" alt="Rey pic" width="100%" height="100%">
 <br> <br>
 
 The idea is that games have more of a presence in the future than movies.<br> <br>
@@ -79,7 +82,7 @@ the motion of the characters hands and feet as well as game-camera and photo swi
 
 <br>
 
-<img src="images/HER.JPG" alt="HER movie still" width="100%" height="auto">
+<img src="../public/images/HER.JPG" alt="HER movie still" width="100%" height="auto">
 
 <br><br>I spent about two months creating the technique for doing the hologram’s “nested perspective”, where the game 
 has it’s own perspective inside the perspective of the room. 
@@ -97,7 +100,7 @@ In the games we play, narrative structure is what makes us care about our charac
 save the day.
 <br><br>
 
-<img src="images/game_books.jpg" alt="Games in book form" width="100%" height="auto">
+<img src="../public/images/game_books.jpg" alt="Games in book form" width="100%" height="auto">
 <br><br>
 The same is true for a good book, whether it’s a thriller, science fiction or fantasy novel; 
 it’s the narrative, the characters and the pacing that bring us in.
@@ -110,7 +113,7 @@ The beginning, where conflict is established,
 The middle, where implications of the conflict evolve and
 The resolution, where the protagonist saves the day (or dies).
 <br><br>
-<img src="images/Little-Video-Game-Books-joebot-6.jpg" alt="Bioshock as a kids book cover pic" width="100%" height="auto">
+<img src="../public/images/Little-Video-Game-Books-joebot-6.jpg" alt="Bioshock as a kids book cover pic" width="100%" height="auto">
 
 <br><br>
 In most games, the first act is often played out in cut scenes 

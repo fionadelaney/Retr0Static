@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../templates/header1.inc.php';
+require_once __DIR__ . '/../templates/nav.inc.php';
 //-------------------------------------------
 
 
@@ -21,18 +22,21 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 //<h1>Sitemap</h1>
 //</div>
 
+//*------------------------
+
+//<div align="center" id="nav">
+
+//  <a href="index.php" class="button">Home</a>
+//  <a href="about.php?action=about"class="button">About</a>
+//  <a href="screen.php?action=screen" class="button">Screen</a>
+//  <a href="news.php?action=news" class="button">News</a>
+//  <a href="insight.php?action=insight" class="button">Insight</a>
+//  <a href="shop.php?action=shop" class="button">Shop</a>
+//</div>
+
+//*------------------------
+
 ?>
-
-<div align="center" id="nav">
-
-  <a href="index.php" class="button">Home</a>
-  <a href="about.php?action=about"class="button">About</a>
-  <a href="screen.php?action=screen" class="button">Screen</a>
-  <a href="news.php?action=news" class="button">News</a>
-  <a href="insight.php?action=insight" class="button">Insight</a>
-  <a href="shop.php?action=shop" class="button">Shop</a>
-</div>
-
 
 <div id="section">
 

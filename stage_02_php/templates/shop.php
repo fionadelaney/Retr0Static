@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../templates/header1.inc.php';
+require_once __DIR__ . '/../templates/nav.inc.php';
 //-------------------------------------------
 
 //<!DOCTYPE html>
@@ -16,25 +17,27 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 //</head>
 //<body>
 
+//*------------------------
+
+//<div align="center" id="nav">
+
+//  <a href="index.php" class="button">Home</a>
+//  <a href="about.php?action=about"class="button">About</a>
+//  <a href="screen.php?action=screen" class="button">Screen</a>
+//  <a href="news.php?action=news" class="button">News</a>
+//  <a href="insight.php?action=insight"class="button">Insight</a>
+//  <a href="shop.php?action=shop"class="current_page">Shop</a>
+//</div>
+
+//*------------------------
 ?>
 <div id="header">
 <h1>Retr0Static | Shop</h1>
 </div>
 
-<div align="center" id="nav">
-
-  <a href="index.php" class="button">Home</a>
-  <a href="about.php?action=about"class="button">About</a>
-  <a href="screen.php?action=screen" class="button">Screen</a>
-  <a href="news.php?action=news" class="button">News</a>
-  <a href="insight.php?action=insight"class="button">Insight</a>
-  <a href="shop.php?action=shop"class="current_page">Shop</a>
-</div>
-
-
 <div id="aside_shop">
 <p>
-<a href="Login.html"><img src="buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
+<a href="Login.html"><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
 <br>
 </p>
 <br>
@@ -74,7 +77,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Bioshock </td>
         <td> XBox 360 2007 </td>
         <td>&euro; 6.00 </td>
-        <td><img src="images/bioshock_ss.jpg" alt="5 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/bioshock_ss.jpg" alt="Bioshock screen" width="100%" height="auto"></td>
         <td><a href="http://irrationalgames.com/tag/bioshock/" target="blank">Irrational Games</a></td>
     	<td> Fantasy 1st person shooter </td>
     </tr>
@@ -84,7 +87,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Bioshock </td>
         <td> PS3 2008 </td>
         <td>&euro; 6.00 </td>
-        <td><img src="images/bioshock_ss.jpg" alt="5 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/bioshock_ss.jpg" alt="Bioshock screen" width="100%" height="auto"></td>
         <td><a href="http://irrationalgames.com/tag/bioshock/" target="blank">Irrational Games</a></td>
     	<td> Fantasy 1st person shooter </td>
     </tr>
@@ -94,7 +97,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Bioshock </td>
         <td> Windows 2007 </td>
         <td>&euro; 6.00 </td>
-        <td><img src="images/bioshock_ss.jpg" alt="5 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/bioshock_ss.jpg" alt="Bioshock screen" width="100%" height="auto"></td>
         <td><a href="http://irrationalgames.com/tag/bioshock/" target="blank">Irrational Games</a></td>
     	<td> Fantasy 1st person shooter </td>
     </tr>
@@ -104,7 +107,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td>Chili Con Carnage</td>
         <td> PSP 2007 </td>
         <td>&euro; 6.00</td>
-        <td><img src="images/Chili_Con_Carnage.jpg" alt="4 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/Chili_Con_Carnage.jpg" alt="Chili screen" width="100%" height="auto"></td>
         <td> Deadline Games [Defunct] </td>
     	<td> Comedy Action 3rd person shooter </td>
     </tr>
@@ -114,7 +117,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Baldur's Gate II </td>
         <td> Windows </td>
         <td>&euro; 6.00 </td>
-        <td><img src="images/baldursgate_ss.png" alt="3 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/baldursgate_ss.png" alt="Baldur's Gate screen" width="100%" height="auto"></td>
         <td><a href="http://www.interplay.com/" target="blank">Interplay Ent Corp</a></td>
     	<td> Fantasy CRPG </td> 
     </tr>
@@ -124,7 +127,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> The Sims 2</td>
         <td> Nintendo DS 2005 </td>
         <td>&euro; 6.00</td>
-        <td><img src="images/sims2_ss.jpg" alt="3 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/sims2_ss.jpg" alt="The Sims 2 screen" width="100%" height="auto"></td>
         <td> <a href="http://www.ea.com/" target="blank"> Electronic Arts</a></td> 
     	<td> Life Simulation </td>
     </tr>
@@ -134,7 +137,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> The Sims 2</td>
         <td> GameCube 2005</td>
         <td>&euro; 6.00</td>
-        <td><img src="images/sims2_ss.jpg" alt="3 star" width="100%" height="auto"></td>
+        <td><img src="../public/images/sims2_ss.jpg" alt="The Sims 2 screen" width="100%" height="auto"></td>
         <td> <a href="http://www.ea.com/" target="blank"> Electronic Arts</a></td> 
     	<td> Life Simulation </td>
     </tr>
@@ -145,8 +148,8 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Prince of Persia </td>
         <td> Sega Master System 1992 </td>
         <td>&euro; 26.00</td>
-        <td><img src="images/prince_persia_ss.png" alt="5 star" width="100&" height="auto"></td>
-        <td> dev website </td>
+        <td><img src="../public/images/prince_persia_ss.png" alt="Prince screen" width="100&" height="auto"></td>
+        <td> Broderbund Software [defunct] </td>
     	<td> Fantasy </td>
     </tr>
     
@@ -156,7 +159,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Prince of Persia </td>
         <td> Gameboy Color 1999</td>
         <td>&euro; 26.00</td>
-        <td><img src="images/prince_persia_ss.png" alt="5 star" width="100&" height="auto"></td>
+        <td><img src="../public/images/prince_persia_ss.png" alt="Prince screen" width="100&" height="auto"></td>
         <td> Broderbund Software [defunct] </td>
     	<td> Fantasy </td>
     </tr>
@@ -167,7 +170,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
         <td> Prince of Persia </td>
         <td> Amstrad PCP 1990 </td>
         <td>&euro; 50.00</td>
-        <td><img src="images/prince_persia_ss.png" alt="5 star" width="100&" height="auto"></td>
+        <td><img src="../public/images/prince_persia_ss.png" alt="Prince screen" width="100&" height="auto"></td>
         <td> Broderbund Software [defunct] </td>
     	<td> Fantasy </td>
     </tr>
@@ -179,7 +182,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 <div id="main_shop">
 
 <p>
-<img src="assets1/Retr0Static.gif" alt="logo gif" width="100%" height="auto">
+<img src="../public/assets1/Retr0Static.gif" alt="logo gif" width="100%" height="auto">
 </p>
 
 </div>
