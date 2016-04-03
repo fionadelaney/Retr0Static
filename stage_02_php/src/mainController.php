@@ -7,21 +7,21 @@ function aboutAction()
     require_once __DIR__ . '/../templates/about.php';
 }
 
-function contactAction()
+function screenAction()
 {
     $pageTitle = 'Screen';
     $screenLinkStyle = 'current_page';
     require_once __DIR__ . '/../templates/screen.php';
 }
 
-function contactAction()
+function newsAction()
 {
     $pageTitle = 'News';
     $newsLinkStyle = 'current_page';
     require_once __DIR__ . '/../templates/news.php';
 }
 
-function contactAction()
+function insightAction()
 {
     $pageTitle = 'Insight';
     $insightLinkStyle = 'current_page';
@@ -35,7 +35,7 @@ function indexAction()
     require_once __DIR__ . '/../templates/index.php';
 }
 
-function listAction()
+function shopAction()
 {
     $pageTitle = 'Shop';
     $shopLinkStyle = 'current_page';

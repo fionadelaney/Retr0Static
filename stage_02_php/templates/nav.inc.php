@@ -33,16 +33,22 @@ $sitemapLinkStyle = isset($sitemapLinkStyle) ? $sitemapLinkStyle : '';
 */
 //-------------------------------------------------
 ?>
-<nav>
-<div align="center" id="nav">
 
-  <a href="index.php" class="<?= $indexLinkStyle ?>">Home</a>
-  <a href="about.php?action=about"class="<?= $aboutLinkStyle ?>">About</a>
-  <a href="screen.php?action=screen" class="<?= $screenLinkStyle ?>">Screen</a>
-  <a href="news.php?action=news" class="<?= $newsLinkStyle ?>">News</a>
-  <a href="insight.php?action=insight"class="<?= $insightLinkStyle ?>">Insight</a>
-  <a href="shop.php?action=shop"class="<?= $shopLinkStyle ?>">Shop</a>
-
+<div id="header">
+    <h1>Retr0Static | <?= $pageTitle ?></h1>
 </div>
-</nav>
+
+<div align="center" id="nav">
+    <nav>
+    <ul>
+    <li><a href="index.php" class="<?= $indexLinkStyle ?>">Home</a></li>
+    <li><a href="about.php?action=about"class="<?= $aboutLinkStyle ?>">About</a></li>
+    <li><a href="screen.php?action=screen" class="<?= $screenLinkStyle ?>">Screen</a></li>
+    <li><a href="news.php?action=news" class="<?= $newsLinkStyle ?>">News</a></li>
+    <li><a href="insight.php?action=insight"class="<?= $insightLinkStyle ?>">Insight</a></li>
+        <li><a href="shop.php?action=shop"class="<?= $shopLinkStyle ?>">Shop</a></li>
+    </ul>
+    </nav>
+</div>
+
 

@@ -3,38 +3,7 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 require_once __DIR__ . '/../templates/nav.inc.php';
 //-------------------------------------------
 
-//<!DOCTYPE html>
-//<html lang="en">
-//<head>
-	//<meta charset="utf-8">
-	//<title>Retr0Static | News</title>
-   // <style>
-      //  @import "css/body.css";
-      //  @import "css/nav.css";
-      //  @import "css/head_foot.css";
-   // </style>
-
-//</head>
-//<body>
-
-//*-------------------------
-
-//  <div align="center" id="nav">
-//  <a href="index.php" class="button">Home</a>
-//  <a href="about.php?action=about"class="button">About</a>
-//  <a href="screen.php?action=screen" class="button">Screen</a>
-//  <a href="news.php?action=news" class="button">News</a>
-//  <a href="insight.php?action=insight"class="current_page">Insight</a>
-//  <a href="shop.php?action=shop"class="button">Shop</a>
-//  </div>
-
-//*-------------------------
-
-
 ?>
-<div id="header">
-<h1>Retr0Static | Insight</h1>
-</div>
 
 <div id="aside_insight">
 <p>
