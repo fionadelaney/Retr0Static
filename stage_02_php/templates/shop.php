@@ -42,6 +42,12 @@ require_once __DIR__ . '/../templates/nav.inc.php';
     //   	0 - 15 - 40 - 55 - 70 - 85 - 100 %age
     // 	      .5   1    2    3    4    5     stars
 -->
+    <?php
+    //require_once ;
+    shopListingAction();
+    ?>
+
+
     <tr>
         <td> BIG001 </td>
         <td> Bioshock </td>
