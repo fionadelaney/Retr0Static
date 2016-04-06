@@ -61,11 +61,4 @@ require_once __DIR__ . '/../templates/footer.inc.php';
 //  don't close the PHP tags
 
 
-//<div id="footer">
-//<p>
-//Copyright@ Fiona Delaney 2015	<a href="sitemap.php?action=sitemap" class="footerbutton">Sitemap</a></p>
-//</div>
-
-//</body>
-//</html>
 

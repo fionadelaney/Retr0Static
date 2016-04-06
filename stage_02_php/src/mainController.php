@@ -54,7 +54,7 @@ function shopListingAction()
 
     $game_list = array();
     $game_list[] = array(
-            'game_id' => 'BIG001',
+            'game_id' => 'BIG001_',
             'game_title' => 'Bioshock',
             'game_platform' => 'XBox 360 2007',
             'game_price' => '&euro; 6.00',
@@ -65,9 +65,9 @@ function shopListingAction()
         );
 
     $game_list[] = array(
-        'game_id' => 'BIG002',
+        'game_id' => ' BIG002 ',
         'game_title' => 'Bioshock',
-        'game_platform' => 'XBox 360 2007',
+        'game_platform' => 'PS3 2008',
         'game_price' => '&euro; 6.00',
         'game_screen' => 'bioshock_ss.jpg',
         'game_dev' => 'Irrational Games',
@@ -75,11 +75,98 @@ function shopListingAction()
         'game_desc' => 'Fantasy 1st person shooter'
     );
 
+    $game_list[] = array(
+        'game_id' => 'BIG003',
+        'game_title' => 'Bioshock',
+        'game_platform' => 'Windows 2007',
+        'game_price' => '&euro; 6.00',
+        'game_screen' => 'bioshock_ss.jpg',
+        'game_dev' => 'Irrational Games',
+        'game_dev_url' => 'http://irrationalgames.com/tag/bioshock/',
+        'game_desc' => 'Fantasy 1st person shooter'
+    );
+
+    $game_list[] = array(
+        'game_id' => ' CDG003 ',
+        'game_title' => 'Chili Con Carnage',
+        'game_platform' => 'PSP 2007',
+        'game_price' => '&euro; 6.00',
+        'game_screen' => 'bioshock_ss.jpg',
+        'game_dev' => 'Deadline Games [Defunct] ',
+        'game_dev_url' => 'n/a',
+        'game_desc' => 'Comedy Action 3rd person shooter'
+    );
+
+    $game_list[] = array(
+        'game_id' => ' IE005 ',
+        'game_title' => 'Baldur\'s Gate II',
+        'game_platform' => ' Windows ',
+        'game_price' => '&euro; 6.00',
+        'game_screen' => 'baldursgate_ss.png',
+        'game_dev' => 'Interplay Ent Corp ',
+        'game_dev_url' => ' http://www.interplay.com/ ',
+        'game_desc' => ' Fantasy CRPG '
+    );
+
+    $game_list[] = array(
+        'game_id' => ' SEA004 ',
+        'game_title' => ' The Sims 2 ',
+        'game_platform' => ' Nintendo DS 2005 ',
+        'game_price' => '&euro; 6.00',
+        'game_screen' => 'sims2_ss.jpg',
+        'game_dev' => ' Electronic Arts ',
+        'game_dev_url' => ' http://www.ea.com/ ',
+        'game_desc' => ' Life Simulation '
+    );
+
+    $game_list[] = array(
+        'game_id' => ' SEA007 ',
+        'game_title' => ' The Sims 2 ',
+        'game_platform' => ' GameCube 2005 ',
+        'game_price' => '&euro; 6.00',
+        'game_screen' => 'sims2_ss.jpg',
+        'game_dev' => ' Electronic Arts ',
+        'game_dev_url' => ' http://www.ea.com/ ',
+        'game_desc' => ' Life Simulation '
+    );
+
+    $game_list[] = array(
+        'game_id' => ' PHMR02 ',
+        'game_title' => ' Prince of Persia ',
+        'game_platform' => ' Sega Master System 1992 ',
+        'game_price' => '&euro; 26.00',
+        'game_screen' => 'prince_persia_ss.png',
+        'game_dev' => ' Broderbund Software [defunct]  ',
+        'game_dev_url' => ' n/a ',
+        'game_desc' => ' Fantasy '
+    );
+
+    $game_list[] = array(
+        'game_id' => ' PHMR75 ',
+        'game_title' => ' Prince of Persia ',
+        'game_platform' => ' Gameboy Color 1999 ',
+        'game_price' => '&euro; 26.00',
+        'game_screen' => 'prince_persia_ss.png',
+        'game_dev' => ' Broderbund Software [defunct]  ',
+        'game_dev_url' => ' n/a ',
+        'game_desc' => ' Fantasy '
+    );
+
+    $game_list[] = array(
+        'game_id' => ' PHMR08 ',
+        'game_title' => ' Prince of Persia ',
+        'game_platform' => ' Amstrad PCP 1990 ',
+        'game_price' => '&euro; 50.00',
+        'game_screen' => 'prince_persia_ss.png',
+        'game_dev' => ' Broderbund Software [defunct]  ',
+        'game_dev_url' => ' n/a ',
+        'game_desc' => ' Fantasy '
+    );
+
 
     $content = '';
 
-
-    foreach ($game_list as $game) {
+    while ( $game = current($game_list) ) {
         ob_start();
     ?>
 <tr>
@@ -96,6 +183,7 @@ function shopListingAction()
         $table_row = ob_get_contents();
         ob_end_clean();
         $content .= $table_row;
+        next($game_list);
     }
 
     echo $content;

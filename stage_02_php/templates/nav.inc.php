@@ -42,11 +42,11 @@ $sitemapLinkStyle = isset($sitemapLinkStyle) ? $sitemapLinkStyle : '';
     <nav>
     <ul>
     <li><a href="index.php" class="<?= $indexLinkStyle ?>">Home</a></li>
-    <li><a href="index.php?action=about"class="<?= $aboutLinkStyle ?>">About</a></li>
+    <li><a href="index.php?action=about" class="<?= $aboutLinkStyle ?>">About</a></li>
     <li><a href="index.php?action=screen" class="<?= $screenLinkStyle ?>">Screen</a></li>
     <li><a href="index.php?action=news" class="<?= $newsLinkStyle ?>">News</a></li>
-    <li><a href="index.php?action=insight"class="<?= $insightLinkStyle ?>">Insight</a></li>
-    <li><a href="index.php?action=shop"class="<?= $shopLinkStyle ?>">Shop</a></li>
+    <li><a href="index.php?action=insight" class="<?= $insightLinkStyle ?>">Insight</a></li>
+    <li><a href="index.php?action=shop" class="<?= $shopLinkStyle ?>">Shop</a></li>
     </ul>
     </nav>
 </div>
