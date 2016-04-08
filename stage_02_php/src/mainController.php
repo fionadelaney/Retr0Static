@@ -54,16 +54,18 @@ function shopListingAction()
 
     $game_list = array();
     $game_list[] = array(
-   //         'game_id' => 'BIG001_',
-   //         'game_title' => 'Bioshock',
-   //         'game_platform' => 'XBox 360 2007',
-   //         'game_price' => '&euro; 6.00',
-   //         'game_screen' => 'bioshock_ss.jpg',
-   //         'game_dev' => 'Irrational Games',
-   //         'game_dev_url' => 'http://irrationalgames.com/tag/bioshock/',
-   //         'game_desc' => 'Fantasy 1st person shooter'
-        'BIG001_', 'Bioshock','XBox 360 2007', '&euro; 6.00', 'bioshock_ss.jpg', 'Irrational Games',
-        'http://irrationalgames.com/tag/bioshock/', 'Fantasy 1st person shooter' );
+            'game_id' => 'BIG001_',
+            'game_title' => 'Bioshock',
+            'game_platform' => 'XBox 360 2007',
+            'game_price' => '&euro; 6.00',
+            'game_screen' => 'bioshock_ss.jpg',
+            'game_dev' => 'Irrational Games',
+            'game_dev_url' => 'http://irrationalgames.com/tag/bioshock/',
+            'game_desc' => 'Fantasy 1st person shooter'
+
+    //    'BIG001_', 'Bioshock','XBox 360 2007', '&euro; 6.00', 'bioshock_ss.jpg', 'Irrational Games',
+    //    'http://irrationalgames.com/tag/bioshock/', 'Fantasy 1st person shooter'
+        );
 
     $game_list[] = array(
    //     'game_id' => ' BIG002 ',

@@ -109,12 +109,27 @@ class game
 
     public function getGamePrice()
     {
-        return $this->game_price()
+        return $this->game_price;
     }
 
     public function getGameScreen()
     {
-        return$this->
+        return $this->game_screen;
+    }
+
+    public function getGameDev()
+    {
+        return $this->game_dev;
+    }
+
+    public function getGameDevUrl()
+    {
+        return $this->game_dev_url;
+    }
+
+    public function getGameDesc()
+    {
+        return $this->game_desc;
     }
 
 }
