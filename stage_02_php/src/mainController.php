@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/game.php';
+
 
 function aboutAction()
 {
@@ -78,6 +80,9 @@ function shopAction()
 
     $game_list[] = new Game(' PHMR08 ', ' Prince of Persia ',' Amstrad PCP 1990 ','&euro; 26.00',
         'prince_persia_ss.png', ' Broderbund Software [defunct]  ', ' n/a ',' Fantasy ');
+
+
+return $game_list;
 
 }
 

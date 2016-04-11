@@ -40,13 +40,13 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
     <?php
     //require_once ;
-    shopListingAction();
-
-
+    $game_list = shopListingAction();
+;
     $content = '';
 
-    while ( $product = current($game_list) ) {
-    //    ob_start();
+    while ($product = current($game_list)) {
+        ob_start();
+
         ?>
         <tr>
             <td> <?= $product->getGameId() ?> </td>
@@ -59,9 +59,9 @@ require_once __DIR__ . '/../templates/nav.inc.php';
         </tr>
 
         <?php
-     //   $table_row = ob_get_contents();
-     //   ob_end_clean();
-        $content .= "one";  //$table_row;
+        $table_row = ob_get_contents();
+        ob_end_clean();
+        $content .= $table_row;
         next($game_list);
     }
 

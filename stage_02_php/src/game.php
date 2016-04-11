@@ -77,7 +77,7 @@ class Game
      * @param $game_id
      */
     public function __construct($game_id, $game_title, $game_platform, $game_price, $game_screen, $game_dev,
-        $game_dev_url, $game_description)
+        $game_dev_url, $game_desc)
     {
         $this->game_id = $game_id;
         $this->game_title = $game_title;
