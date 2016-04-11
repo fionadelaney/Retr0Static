@@ -45,23 +45,23 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
     $content = '';
 
-    while ( $product = current($game_list) ) {
-    //    ob_start();
+    while ( $game = current($game_list) ) {
+        ob_start();
         ?>
         <tr>
-            <td> <?= $product->getGameId() ?> </td>
-            <td> <?= $product->getGameTitle() ?> </td>
-            <td> <?= $product->getGamePlatform() ?> </td>
-            <td> <?= $product->getGamePrice() ?> </td>
-            <td><img src="../public/images/<?= $product->getGameScreen() ?>" alt="<?= $product->getGameTitle() ?> screen" width="100%" height="auto"></td>
-            <td><a href="<?= $product->getGameDevUrl() ?>" target="blank"><?= $product->getGameDev() ?></a></td>
-            <td> <?= $product->getGameDesc() ?> </td>
+            <td> <?= $game->getGameId() ?> </td>
+            <td> <?= $game->getGameTitle() ?> </td>
+            <td> <?= $game->getGamePlatform() ?> </td>
+            <td> <?= $game->getGamePrice() ?> </td>
+            <td><img src="../public/images/<?= $game->getGameScreen() ?>" alt="<?= $game->getGameTitle() ?> screen" width="100%" height="auto"></td>
+            <td><a href="<?= $game->getGameDevUrl() ?>" target="blank"><?= $game->getGameDev() ?></a></td>
+            <td> <?= $game->getGameDesc() ?> </td>
         </tr>
 
         <?php
-     //   $table_row = ob_get_contents();
-     //   ob_end_clean();
-        $content .= "one";  //$table_row;
+        $table_row = ob_get_contents();
+        ob_end_clean();
+        $content .= $table_row;
         next($game_list);
     }
 

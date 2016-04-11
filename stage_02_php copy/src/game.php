@@ -21,7 +21,7 @@
  *
  */
 
-class Game
+class game
 {
     /**
      * objects unique ID
@@ -76,17 +76,17 @@ class Game
      * game constructor
      * @param $game_id
      */
-    public function __construct($game_id, $game_title, $game_platform, $game_price, $game_screen, $game_dev,
+    public function__construct($game_id, $game_title, $game_platform, $game_price, $game_screen, $game_dev,
         $game_dev_url, $game_description)
     {
-        $this->game_id = $game_id;
-        $this->game_title = $game_title;
-        $this->game_platform = $game_platform;
-        $this->game_price = $game_price;
-        $this->game_screen = $game_screen;
-        $this->game_dev = $game_dev;
-        $this->game_dev_url = $game_dev_url;
-        $this->game_desc = $game_desc;
+        $this-> game_id = $game_id;
+        $this-> game_title = $game_title;
+        $this-> game_platform = $game_platform;
+        $this-> game_price = $game_price;
+        $this-> game_screen = $game_screen;
+        $this-> game_dev = $game_dev;
+        $this-> game_dev_url = $game_dev_url;
+        $this-> game_desc = $game_desc;
     }
 
     /**
