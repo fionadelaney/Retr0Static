@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../src/mainController.php';
+use Phizzle\MainController;
+require_once __DIR__ . '/..vendor/autoload.php';
+//require_once __DIR__ . '/../src/mainController.php';
 
 // get action GET parameter (if it exists)
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);

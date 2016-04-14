@@ -41,7 +41,7 @@ require_once __DIR__ . '/../templates/nav.inc.php';
     <?php
     //require_once ;
     $game_list = shopListingAction();
-;
+
     $content = '';
 
     while ($product = current($game_list)) {

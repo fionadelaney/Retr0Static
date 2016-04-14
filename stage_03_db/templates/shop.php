@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../templates/header1.inc.php';
 require_once __DIR__ . '/../templates/nav.inc.php';
 //-------------------------------------------
@@ -40,22 +41,22 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
     <?php
     //require_once ;
-    shopListingAction();
-
+    $game_list = shopListingAction();
 
     $content = '';
 
-    while ( $game = current($game_list) ) {
+    while ($product = current($game_list)) {
         ob_start();
+
         ?>
         <tr>
-            <td> <?= $game->getGameId() ?> </td>
-            <td> <?= $game->getGameTitle() ?> </td>
-            <td> <?= $game->getGamePlatform() ?> </td>
-            <td> <?= $game->getGamePrice() ?> </td>
-            <td><img src="../public/images/<?= $game->getGameScreen() ?>" alt="<?= $game->getGameTitle() ?> screen" width="100%" height="auto"></td>
-            <td><a href="<?= $game->getGameDevUrl() ?>" target="blank"><?= $game->getGameDev() ?></a></td>
-            <td> <?= $game->getGameDesc() ?> </td>
+            <td> <?= $product->getGameId() ?> </td>
+            <td> <?= $product->getGameTitle() ?> </td>
+            <td> <?= $product->getGamePlatform() ?> </td>
+            <td> <?= $product->getGamePrice() ?> </td>
+            <td><img src="../public/images/<?= $product->getGameScreen() ?>" alt="<?= $product->getGameTitle() ?> screen" width="100%" height="auto"></td>
+            <td><a href="<?= $product->getGameDevUrl() ?>" target="blank"><?= $product->getGameDev() ?></a></td>
+            <td> <?= $product->getGameDesc() ?> </td>
         </tr>
 
         <?php
@@ -67,8 +68,8 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
     echo $content;
 
-
     ?>
+
 
 </table>
 
