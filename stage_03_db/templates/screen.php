@@ -46,7 +46,35 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 </tr>
 
 <caption><h1>Watch...</h1></caption>
-</table>
+
+    <?php
+    //copied in from game.php and rescoped for screenListingAction
+    $watch_list = screenListingAction();
+
+    $content = '';
+
+    while ($video = current($watch_list)) {
+        ob_start();
+
+        ?>
+        <tr>
+            <td><img src="../public/images/<?= $video->getGameScreen() ?>" alt="<?= $video->getGameTitle() ?> screen" width="100%" height="auto"></td>
+            <td><a href="<?= $video->getVideoUrl() ?>" target="blank"></a></td>
+        </tr>
+
+        <?php
+        $table_row = ob_get_contents();
+        ob_end_clean();
+        $content .= $table_row;
+        next($watch_list);
+    }
+
+    echo $content;
+// end of copied section - </table>
+    ?>
+
+    </table>
+
 </div>
 
 <div id="main_screen">
