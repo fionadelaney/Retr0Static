@@ -39,7 +39,7 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 <tr>
 <td><a href="https://www.youtube.com/watch?v=Qd_x-S7IpHA" class="video_link" target="_blank"><img src="../public/images/mountain.png" width="100%" height="auto"></a></td>
 <td><a href="https://www.youtube.com/watch?v=LhFeyJ00fdo" class="video_link" target="_blank"><img src="../public/images/Chili_Con_Carnage.jpg" width="100%" height="auto"></a></td>
-<td><a href="http://www.davidoreilly.com/projects/her/" class="video_link" target="blank"><img src="../public/images/her2.JPG" width="100%" height="auto"></a></td>
+<td><a href="http://www.davidoreilly.com/projects/her/" class="video_link" target="blank"><img src="../public/images/her2.jpg" width="100%" height="auto"></a></td>
 <td><a href="https://www.youtube.com/watch?v=QHHzMLL8ERs" class="video_link" target="blank"><img src="../public/images/baldursgate_ss.png" width="100%" height="auto"></a></td>
 <td><a href="https://www.youtube.com/watch?v=cKpKv8lGG9o" class="video_link" target="_blank"><img src="../public/images/reality_1.png" width="100%" height="auto"></a></td>
 

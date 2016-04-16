@@ -1,9 +1,11 @@
 <?php
 namespace Phizzle;
+
+require_once __DIR__ . '/game.php';
+require_once __DIR__ . '/watch.php';
+
 class MainController
 {
-    //require_once __DIR__ . '/game.php';
-    //require_once __DIR__ . '/../templates/watch.php';
 
     public function aboutAction()
     {
@@ -17,7 +19,7 @@ class MainController
         $pageTitle = 'Screen';
         $screenLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/screen.php';
-        require_once __DIR__ . '/../templates/watch.php';
+        require_once __DIR__ . '/watch.php';
     }
 
     public function screenListingAction()
