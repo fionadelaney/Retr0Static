@@ -1,9 +1,8 @@
 <?php
 namespace Phizzle;
-
 class MainController
 {
-    require_once __DIR__ . '/game.php';
+    //require_once __DIR__ . '/game.php';
 
     public function aboutAction()
     {
@@ -44,7 +43,7 @@ class MainController
     {
         $pageTitle = 'Shop';
         $shopLinkStyle = 'current_page';
-
+        require_once __DIR__ . '/game.php';
         require_once __DIR__ . '/../templates/shop.php';
     }
 

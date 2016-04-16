@@ -1,4 +1,5 @@
 <?php
+namespace Phizzle;
 /**
  * Created with: PHPStorm
  * By: Fiona Delaney

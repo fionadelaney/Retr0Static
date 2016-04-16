@@ -1,5 +1,5 @@
 <?php
-
+namespace Phizzle;
 /**
  * Created by PhpStorm.
  * User: vagrant

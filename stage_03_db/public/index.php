@@ -1,24 +1,29 @@
 <?php
-use Phizzle\MainController;
-require_once __DIR__ . '/..vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 //require_once __DIR__ . '/../src/mainController.php';
+
+use Phizzle\MainController;
 
 // get action GET parameter (if it exists)
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 
+
+$mainController = new MainController();
+
 if ('about' == $action){
-   aboutAction();
+   $mainController->aboutAction();
 } else if ('insight' == $action) {
-    insightAction();
+    $mainController->insightAction();
 } else if ('screen' == $action) {
-    screenAction();
+    $mainController->screenAction();
 } else if ('news' == $action) {
-    newsAction();
+    $mainController->newsAction();
 } else if ('shop' == $action) {
-    shopAction();
+    $mainController->shopAction();
 } else if ('sitemap' == $action) {
-    sitemapAction();
+    $mainController->sitemapAction();
 } else {
     // default is home page ('index' action)
-    indexAction();
+    $mainController->indexAction();
 }
+
