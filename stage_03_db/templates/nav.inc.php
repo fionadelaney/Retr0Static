@@ -30,13 +30,14 @@ $aboutLinkStyle = isset($aboutLinkStyle) ? $aboutLinkStyle : '';
 $listLinkStyle = isset($listLinkStyle) ? $listLinkStyle : '';
 $contactLinkStyle = isset($contactLinkStyle) ? $contactLinkStyle : '';
 $sitemapLinkStyle = isset($sitemapLinkStyle) ? $sitemapLinkStyle : '';
-*/
-//-------------------------------------------------
-?>
+
 
 <div id="header">
     <h1>Retr0Static | <?= $pageTitle ?></h1>
 </div>
+*/
+//-------------------------------------------------
+?>
 
 <div align="center" id="nav">
     <nav>
