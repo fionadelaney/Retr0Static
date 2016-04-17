@@ -7,22 +7,35 @@ require_once __DIR__ . '/watch.php';
 class MainController
 {
 
-    public function aboutAction()
-    {
-        $pageTitle = 'About';
-        $aboutLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/about.php';
-    }
+   // public function aboutAction(\Twig_Environment $twig) - NOTE: About page
+    // was merged with index.php to create single landing page
+ //   {
+        //$pageTitle = 'About';
+        //$aboutLinkStyle = 'current_page';
+        //require_once __DIR__ . '/../templates/about.php';
 
-    public function screenAction()
+  //      $argsArray = [];
+  //      $template = 'about';
+  //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+  //      print $htmlOutput;
+  //  }
+
+    public function screenAction() //\Twig_Environment $twig
     {
         $pageTitle = 'Screen';
         $screenLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/screen.php';
         require_once __DIR__ . '/watch.php';
+
+        //      $argsArray = [];
+        //      $template = 'screen';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
+
+
     }
 
-    public function screenListingAction()
+    public function screenListingAction() //\Twig_Environment $twig
     {
         $watch_list = [];
         $watch_list[] = new Watch('246bioshock.jpg', 'Bioshock Playthrough',
@@ -51,36 +64,56 @@ class MainController
 
     }
 
-    public function newsAction()
+    public function newsAction() //\Twig_Environment $twig
     {
         $pageTitle = 'News';
         $newsLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/news.php';
+
+        //      $argsArray = [];
+        //      $template = 'news';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
     }
 
-    public function insightAction()
+    public function insightAction()  //\Twig_Environment $twig
     {
         $pageTitle = 'Insight';
         $insightLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/insight.php';
+
+        //      $argsArray = [];
+        //      $template = 'insight';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
     }
 
-    public function indexAction()
+    public function indexAction() //\Twig_Environment $twig
     {
         $pageTitle = 'Home';
         $indexLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/index.php';
+
+        //      $argsArray = [];
+        //      $template = 'home';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
     }
 
-    public function shopAction()
+    public function shopAction() //\Twig_Environment $twig
     {
         $pageTitle = 'Shop';
         $shopLinkStyle = 'current_page';
         require_once __DIR__ . '/game.php';
         require_once __DIR__ . '/../templates/shop.php';
+
+        //      $argsArray = [];
+        //      $template = 'shop';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
     }
 
-    public function shopListingAction()
+    public function shopListingAction() //\Twig_Environment $twig
     {
         $game_list = [];
         $game_list[] = new Game('BIG001', 'Bioshock','XBox 360 2007', '&euro; 6.00',
@@ -123,11 +156,16 @@ class MainController
     }
 
 
-    public function sitemapAction()
+    public function sitemapAction() // \Twig_Environment $twig
     {
         $pageTitle = 'Sitemap';
          $sitemapLinkStyle = 'current_page';
         require_once __DIR__ . '/../templates/sitemap.php';
+
+        //      $argsArray = [];
+        //      $template = 'sitemap';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
     }
 
 

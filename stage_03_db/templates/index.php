@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../templates/header1.inc.php';
-//require_once __DIR__ . '/../templates/nav.inc.php';
+require_once __DIR__ . '/../templates/nav.inc.index.php';
 //-------------------------------------------
 
 ?>
@@ -28,16 +28,17 @@ require_once __DIR__ . '/../templates/header1.inc.php';
 
 	<br><blockquote>
 		<p>
-		Ayn Rand's writings were a source of inspiration for the origins and demise of
-		Rapture City in underwater-sci-fi, environmental-disaster game Bioshock.<br><br>
-
-			"The question isn't <strong>who</strong> is going to <strong>let</strong> me; it's <strong>who</strong> is going to <strong>stop</strong> me?"</strong>
-			<em>Ayn Rand</em> author of <strong>Atlas Shrugged </strong>(1957)<br><br> The answer:
-			<strong> Big Daddy</strong> gonna stop you, unless you beat him at his own game, in his own world beneath the waves - Bioshock.<br><br>
+			"The question isn't <em>who</em> is going to <em>let</em> me; it's <em>who</em> is going to <em>stop</em> me?"</strong>
+			<strong>Ayn Rand</strong> author of <strong>Atlas Shrugged </strong>(1957)<br><br> According to Bioshock, the answer is
+			 Big Daddy, a key battle character and guardian of the orphaned little sisters. Unless you can defeat him in Rapture, the toxic
+			city beneath the waves, let's just say things just don't end well...<br><br>
 
 		<img src="../public/images/246crop_bioshock.jpg" alt="Bioshock" width="95%" height="auto"><br><br>
-		Released in 2007 by Irrational Games, Bioshock enjoyed multiple incarnations with publisher K2
-		until it's most recent release for mobile in 2013.<br>
+			Ayn Rand's writings were a source of inspiration for the origins and demise of
+			Rapture City in underwater-sci-fi, environmental-disaster game Bioshock.<br><br>
+
+			Released in 2007 by Irrational Games, Bioshock enjoyed multiple incarnations with publisher K2
+			until it's most recent release for mobile in 2013.<br>
 	</blockquote></p>
 </div>
 

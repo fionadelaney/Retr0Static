@@ -10,6 +10,4 @@
     </style>
 </head>
 <body>
-<div id="header">
-    <h1>Retr0Static | <?= $pageTitle ?></h1>
-</div>
+

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
-//require_once __DIR__ . '/../src/mainController.php';
+//require_once __DIR__ . '/../app/setup.php';
 
 use Phizzle\MainController;
 
@@ -11,19 +11,19 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 $mainController = new MainController();
 
 if ('about' == $action){
-   $mainController->aboutAction();
+   $mainController->aboutAction(); //$twig
 } else if ('insight' == $action) {
-    $mainController->insightAction();
+    $mainController->insightAction(); //$twig
 } else if ('screen' == $action) {
-    $mainController->screenAction();
+    $mainController->screenAction(); //$twig
 } else if ('news' == $action) {
-    $mainController->newsAction();
+    $mainController->newsAction(); //$twig
 } else if ('shop' == $action) {
-    $mainController->shopAction();
+    $mainController->shopAction(); //$twig
 } else if ('sitemap' == $action) {
-    $mainController->sitemapAction();
+    $mainController->sitemapAction(); //$twig
 } else {
     // default is home page ('index' action)
-    $mainController->indexAction();
+    $mainController->indexAction(); //$twig
 }
 

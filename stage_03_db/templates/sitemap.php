@@ -43,11 +43,10 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 <ul>
 
   <li><a href="index.php" class="buttontree">Home</a></li>
-  <li><a href="about.php" class="buttontree">About</a></li>
-  <li><a href="screen.php" class="buttontree">Screen</a></li>
-  <li><a href="news.php" class="buttontree">News</a></li>
-  <li><a href="insight.php" class="buttontree">Insight</a></li>
-  <li><a href="shop.php" class="buttontree">Shop</a></li>
+  <li><a href="screen.php?action=screen" class="button">Screen</a></li>
+  <li><a href="news.php?action=news" class="button">News</a></li>
+  <li><a href="insight.php?action=insight" class="button">Insight</a></li>
+  <li><a href="shop.php?action=shop" class="button">Shop</a></li>
   		
 
 </ul>
