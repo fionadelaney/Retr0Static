@@ -49,7 +49,7 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
     <?php
     //copied in from game.php and rescoped for screenListingAction
-    $watch_list = screenListingAction();
+    $watch_list = $this->screenListingAction();
 
     $content = '';
 

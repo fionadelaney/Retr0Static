@@ -22,7 +22,7 @@ namespace Phizzle;
  *
  */
 
-class game
+class Game
 {
     /**
      * objects unique ID

@@ -23,7 +23,7 @@ namespace Phizzle;
 
 
 
-class watch
+class Watch
 {
 
     /**
