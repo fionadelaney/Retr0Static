@@ -7,7 +7,7 @@ require_once __DIR__ . '/../templates/nav.inc.index.php';
 
 <div id="aside_index">
 	<p>
-		<a href="Shop.php?action=shop"><img src="../public/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
+		<a href="shop.php?action=shop"><img src="../public/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
 		<a href="login.html"><img src="../public/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
 		<a href="https://www.facebook.com/retr0static/"class="button"target="_blank"><img src="../public/buttons/social-facebook-button-blue-icon.png" alt="Facebook Button" width="45%" height="auto%"></a>
 		<br>
@@ -27,7 +27,7 @@ require_once __DIR__ . '/../templates/nav.inc.index.php';
 
 
 	<br><blockquote>
-		<p>
+
 			"The question isn't <em>who</em> is going to <em>let</em> me; it's <em>who</em> is going to <em>stop</em> me?"</strong>
 			<strong>Ayn Rand</strong> author of <strong>Atlas Shrugged </strong>(1957)<br><br> According to Bioshock, the answer is
 			 Big Daddy, a key battle character and guardian of the orphaned little sisters. Unless you can defeat him in Rapture, the toxic
@@ -39,7 +39,7 @@ require_once __DIR__ . '/../templates/nav.inc.index.php';
 
 			Released in 2007 by Irrational Games, Bioshock enjoyed multiple incarnations with publisher K2
 			until it's most recent release for mobile in 2013.<br>
-	</blockquote></p>
+	</blockquote>
 </div>
 
 <?php

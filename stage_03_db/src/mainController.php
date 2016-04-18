@@ -1,6 +1,9 @@
 <?php
 namespace Phizzle;
 
+$parent_directory = dirname( dirname(__FILE__) );
+define('TEMPLATE_DIRECTORY', $parent_directory . '/templates');
+
 require_once __DIR__ . '/game.php';
 require_once __DIR__ . '/watch.php';
 
@@ -9,13 +12,16 @@ class MainController
 
    // public function aboutAction(\Twig_Environment $twig) - NOTE: About page
     // was merged with index.php to create single landing page
+
+
+    // public function loginAction(\Twig_Environment $twig) // ------------------- login.php under construction
  //   {
-        //$pageTitle = 'About';
+        //$pageTitle = 'Login';
         //$aboutLinkStyle = 'current_page';
-        //require_once __DIR__ . '/../templates/about.php';
+        //require_once __DIR__ . '/../templates/login.php';
 
   //      $argsArray = [];
-  //      $template = 'about';
+  //      $template = 'login';
   //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
   //      print $htmlOutput;
   //  }
@@ -24,8 +30,7 @@ class MainController
     {
         $pageTitle = 'Screen';
         $screenLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/screen.php';
-        require_once __DIR__ . '/watch.php';
+        require_once TEMPLATE_DIRECTORY .'/screen.php';
 
         //      $argsArray = [];
         //      $template = 'screen';
@@ -155,19 +160,15 @@ class MainController
 
     }
 
-
     public function sitemapAction() // \Twig_Environment $twig
     {
         $pageTitle = 'Sitemap';
          $sitemapLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/sitemap.php';
+        require_once TEMPLATE_DIRECTORY . '/sitemap.php';
 
         //      $argsArray = [];
         //      $template = 'sitemap';
         //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
         //      print $htmlOutput;
     }
-
-
-
 }

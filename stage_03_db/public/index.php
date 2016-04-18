@@ -7,12 +7,9 @@ use Phizzle\MainController;
 // get action GET parameter (if it exists)
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 
-
 $mainController = new MainController();
 
-if ('about' == $action){
-   $mainController->aboutAction(); //$twig
-} else if ('insight' == $action) {
+if('insight' == $action) {
     $mainController->insightAction(); //$twig
 } else if ('screen' == $action) {
     $mainController->screenAction(); //$twig

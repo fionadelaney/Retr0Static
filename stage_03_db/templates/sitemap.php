@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../templates/header1.inc.php';
-require_once __DIR__ . '/../templates/nav.inc.php';
+require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
+require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 //-------------------------------------------
 
 
@@ -43,10 +43,10 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 <ul>
 
   <li><a href="index.php" class="buttontree">Home</a></li>
-  <li><a href="screen.php?action=screen" class="button">Screen</a></li>
-  <li><a href="news.php?action=news" class="button">News</a></li>
-  <li><a href="insight.php?action=insight" class="button">Insight</a></li>
-  <li><a href="shop.php?action=shop" class="button">Shop</a></li>
+  <li><a href="index.php?action=screen" class="button">Screen</a></li>
+  <li><a href="index.php?action=news" class="button">News</a></li>
+  <li><a href="index.php?action=insight" class="button">Insight</a></li>
+  <li><a href="index.php?action=shop" class="button">Shop</a></li>
   		
 
 </ul>
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
 <?php
 //-------------------------------------------
-require_once __DIR__ . '/../templates/footer.inc.php';
+require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 
 //  don't close the PHP tags
 
