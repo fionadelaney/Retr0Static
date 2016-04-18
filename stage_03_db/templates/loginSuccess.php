@@ -2,9 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: vagrant
- * Date: 17/04/16
- * Time: 20:19
+ * Date: 18/04/16
+ * Time: 15:22
  */
+
 //------------------------------------
 require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
 require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
@@ -12,18 +13,11 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
 
 ?>
 
-<form action="../public/index.php?action=login" method="post">
+    <h1>successful login</h1>
 
-    <p>
-        username: <input type="text" name="username">
-    </p>
-
-    <p>
-        password: <input type="text" name="password">
-    </p>
-
-    <input type="submit" value="login">
-</form>
+        <p>
+            Well done <?= $username ?>, you have successfully logged in to the system.
+        </p>
 
 
 <?php

@@ -1,14 +1,14 @@
 <?php
 
-require_once __DIR__ . '/../templates/header1.inc.php';
-require_once __DIR__ . '/../templates/nav.inc.php';
+require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
+require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 //-------------------------------------------
 
 ?>
 
 <div id="aside_shop">
 <p>
-<a href="Login.html"><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
+<a href='../templates/login.php'><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
 <br>
 </p>
 <br>

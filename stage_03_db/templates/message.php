@@ -2,9 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: vagrant
- * Date: 17/04/16
- * Time: 20:19
+ * Date: 18/04/16
+ * Time: 15:25
  */
+
+
 //------------------------------------
 require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
 require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
@@ -12,18 +14,11 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
 
 ?>
 
-<form action="../public/index.php?action=login" method="post">
+    <h1>Whoops - something went wrong</h1>
 
     <p>
-        username: <input type="text" name="username">
+        Bad username or password, please try again....
     </p>
-
-    <p>
-        password: <input type="text" name="password">
-    </p>
-
-    <input type="submit" value="login">
-</form>
 
 
 <?php
@@ -33,5 +28,5 @@ require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 //  don't close the PHP tags
 
 
-
+    //<?= $message... Output $message
 

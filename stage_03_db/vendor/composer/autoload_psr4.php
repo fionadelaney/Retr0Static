@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Phizzle\\' => array($baseDir . '/src'),
+    'Mattsmithdev\\PdoCrud\\' => array($vendorDir . '/mattsmithdev/pdo-crud-for-free/src'),
 );

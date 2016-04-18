@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../templates/header1.inc.php';
-require_once __DIR__ . '/../templates/nav.inc.index.php';
+require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
+require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 //-------------------------------------------
 
 ?>

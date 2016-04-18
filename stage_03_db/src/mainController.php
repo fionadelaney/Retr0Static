@@ -13,24 +13,82 @@ class MainController
    // public function aboutAction(\Twig_Environment $twig) - NOTE: About page
     // was merged with index.php to create single landing page
 
+    public function loginAction() // \Twig_Environment $twig
+    {
 
-    // public function loginAction(\Twig_Environment $twig) // ------------------- login.php under construction
- //   {
-        //$pageTitle = 'Login';
-        //$aboutLinkStyle = 'current_page';
-        //require_once __DIR__ . '/../templates/login.php';
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/login.php';
 
-  //      $argsArray = [];
-  //      $template = 'login';
-  //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
-  //      print $htmlOutput;
-  //  }
+       // $pageTitle = 'Login';
+       // $sitemapLinkStyle = 'current_page';
+       // require_once TEMPLATE_DIRECTORY . '/login.php';
+
+        //      $argsArray = [];
+        //      $template = 'sitemap';
+        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
+        //      print $htmlOutput;
+
+    }
+    public function processLoginAction()
+    {
+        $isLoggedIn = false; //default is bad login
+
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+        $hashedCorrectPassword = password_hash('admin', PASSWORD_DEFAULT);
+
+        // search for user with username in repository
+        //$userRepository = new UserRepository();
+        $isLoggedIn = User::canFindMatchingUsernameAndPassword($username, $password);
+
+       // if(('admin' ==$username) && password_verify ($password, $hashedCorrectPassword)){
+         //   $isLoggedIn = true;
+     //   }
+
+        if($isLoggedIn) {
+            //STORE login status SESSION
+            $_SESSION['user'] = $username;
+            // success - found a matching username and password
+            require_once __DIR__ . TEMPLATE_DIRECTORY . '/loginSuccess.php';
+        } else {
+            // $message = 'bad username or password, please try again';
+            require_once __DIR . TEMPLATE_DIRECTORY . '/message.php';
+        }
+    }
+
+    public function isLoggedInFromSession() {
+        $isLoggedIn = false;
+
+        // user is logged in if there is a 'user' entry in the SESSION superglobal
+        if(isset($_SESSION['user'])) {
+            $isLoggedIn = true;
+        }
+        return $isLoggedIn;
+    }
+
+    public function usernameFromSession() {
+        $username = '';
+        // extract username from SESSION superglobal
+        if (isset($_SESSION['user'])) {
+            $username = $_SESSION['user'];
+        }
+
+        return $username;
+    }
 
     public function screenAction() //\Twig_Environment $twig
     {
-        $pageTitle = 'Screen';
-        $screenLinkStyle = 'current_page';
-        require_once TEMPLATE_DIRECTORY .'/screen.php';
+
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/screen.php';
+
+       // $pageTitle = 'Screen';
+       // $screenLinkStyle = 'current_page';
+       // require_once TEMPLATE_DIRECTORY .'/screen.php';
 
         //      $argsArray = [];
         //      $template = 'screen';
@@ -71,9 +129,15 @@ class MainController
 
     public function newsAction() //\Twig_Environment $twig
     {
-        $pageTitle = 'News';
-        $newsLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/news.php';
+
+
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/news.php';
+
+       // $pageTitle = 'News';
+       // $newsLinkStyle = 'current_page';
+       // require_once __DIR__ . '/../templates/news.php';
 
         //      $argsArray = [];
         //      $template = 'news';
@@ -83,9 +147,13 @@ class MainController
 
     public function insightAction()  //\Twig_Environment $twig
     {
-        $pageTitle = 'Insight';
-        $insightLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/insight.php';
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/insight.php';
+
+       // $pageTitle = 'Insight';
+       // $insightLinkStyle = 'current_page';
+       // require_once __DIR__ . '/../templates/insight.php';
 
         //      $argsArray = [];
         //      $template = 'insight';
@@ -107,10 +175,15 @@ class MainController
 
     public function shopAction() //\Twig_Environment $twig
     {
-        $pageTitle = 'Shop';
-        $shopLinkStyle = 'current_page';
-        require_once __DIR__ . '/game.php';
-        require_once __DIR__ . '/../templates/shop.php';
+
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/shop.php';
+
+       // $pageTitle = 'Shop';
+       // $shopLinkStyle = 'current_page';
+       //  require_once __DIR__ . '/game.php';
+       // require_once __DIR__ . '/../templates/shop.php';
 
         //      $argsArray = [];
         //      $template = 'shop';
@@ -171,4 +244,5 @@ class MainController
         //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
         //      print $htmlOutput;
     }
+
 }
