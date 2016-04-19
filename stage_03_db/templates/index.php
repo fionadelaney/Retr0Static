@@ -8,7 +8,7 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 <div id="aside_index">
 	<p>
 		<a href="shop.php?action=shop"><img src="../public/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
-		<a href="login.html"><img src="../public/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
+		<a href="index.php?action=login"><img src="../public/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
 		<a href="https://www.facebook.com/retr0static/"class="button"target="_blank"><img src="../public/buttons/social-facebook-button-blue-icon.png" alt="Facebook Button" width="45%" height="auto%"></a>
 		<br>
 	</p>

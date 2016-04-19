@@ -8,7 +8,7 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 
 <div id="aside_shop">
 <p>
-<a href='../templates/login.php'><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
+<a href="index.php?action=login"><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
 <br>
 </p>
 <br>

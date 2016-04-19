@@ -20,8 +20,8 @@ class MainController
         $username = $this->usernameFromSession();
         require_once TEMPLATE_DIRECTORY . '/login.php';
 
-       // $pageTitle = 'Login';
-       // $sitemapLinkStyle = 'current_page';
+        $pageTitle = 'Login';
+        $sitemapLinkStyle = 'current_page';
        // require_once TEMPLATE_DIRECTORY . '/login.php';
 
         //      $argsArray = [];
@@ -30,6 +30,20 @@ class MainController
         //      print $htmlOutput;
 
     }
+
+    public function registerAction() // \Twig_Environment $twig
+    {
+
+        $isLoggedIn = $this->isLoggedInFromSession();
+        $username = $this->usernameFromSession();
+        require_once TEMPLATE_DIRECTORY . '/register.php';
+
+        $pageTitle = 'Register';
+        $sitemapLinkStyle = 'current_page';
+
+    }
+
+
     public function processLoginAction()
     {
         $isLoggedIn = false; //default is bad login
@@ -55,7 +69,7 @@ class MainController
             require_once __DIR__ . TEMPLATE_DIRECTORY . '/loginSuccess.php';
         } else {
             // $message = 'bad username or password, please try again';
-            require_once __DIR . TEMPLATE_DIRECTORY . '/message.php';
+            require_once __DIR__ . TEMPLATE_DIRECTORY . '/message.php';
         }
     }
 
@@ -86,8 +100,8 @@ class MainController
         $username = $this->usernameFromSession();
         require_once TEMPLATE_DIRECTORY . '/screen.php';
 
-       // $pageTitle = 'Screen';
-       // $screenLinkStyle = 'current_page';
+        $pageTitle = 'Screen';
+        $screenLinkStyle = 'current_page';
        // require_once TEMPLATE_DIRECTORY .'/screen.php';
 
         //      $argsArray = [];
@@ -135,8 +149,8 @@ class MainController
         $username = $this->usernameFromSession();
         require_once TEMPLATE_DIRECTORY . '/news.php';
 
-       // $pageTitle = 'News';
-       // $newsLinkStyle = 'current_page';
+        $pageTitle = 'News';
+        $newsLinkStyle = 'current_page';
        // require_once __DIR__ . '/../templates/news.php';
 
         //      $argsArray = [];
@@ -151,8 +165,8 @@ class MainController
         $username = $this->usernameFromSession();
         require_once TEMPLATE_DIRECTORY . '/insight.php';
 
-       // $pageTitle = 'Insight';
-       // $insightLinkStyle = 'current_page';
+        $pageTitle = 'Insight';
+        $insightLinkStyle = 'current_page';
        // require_once __DIR__ . '/../templates/insight.php';
 
         //      $argsArray = [];
@@ -180,8 +194,8 @@ class MainController
         $username = $this->usernameFromSession();
         require_once TEMPLATE_DIRECTORY . '/shop.php';
 
-       // $pageTitle = 'Shop';
-       // $shopLinkStyle = 'current_page';
+        $pageTitle = 'Shop';
+        $shopLinkStyle = 'current_page';
        //  require_once __DIR__ . '/game.php';
        // require_once __DIR__ . '/../templates/shop.php';
 
@@ -236,7 +250,7 @@ class MainController
     public function sitemapAction() // \Twig_Environment $twig
     {
         $pageTitle = 'Sitemap';
-         $sitemapLinkStyle = 'current_page';
+        $sitemapLinkStyle = 'current_page';
         require_once TEMPLATE_DIRECTORY . '/sitemap.php';
 
         //      $argsArray = [];

@@ -16,6 +16,8 @@ $mainController = new MainController();
 
 if('login' == $action) {
     $mainController->loginAction(); //$twig
+} else if('register' == $action) {
+    $mainController->registerAction(); //$twig
 } else if('insight' == $action) {
     $mainController->insightAction(); //$twig
 } else if ('screen' == $action) {
