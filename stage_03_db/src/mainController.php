@@ -16,12 +16,53 @@ class MainController
     public function loginAction() // \Twig_Environment $twig
     {
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // login form has been submitted
+
+            $isLoggedIn = false; //default is bad login
+
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+            $hashedCorrectPassword = password_hash('admin', PASSWORD_DEFAULT);
+
+            // search for user with username in repository
+            //$userRepository = new UserRepository();
+            $user = new User();
+            $isLoggedIn = $user->canFindMatchingUsernameAndPassword($username, $password);
+
+            // if(('admin' ==$username) && password_verify ($password, $hashedCorrectPassword)){
+            //   $isLoggedIn = true;
+            //   }
+
+            if ($isLoggedIn) {
+                //STORE login status SESSION
+                $_SESSION['user'] = $username;
+                // set the redirect location
+                $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : 'index.php';
+                // success - found a matching username and password
+                //require_once __DIR__ . TEMPLATE_DIRECTORY . '/loginSuccess.php';
+                // perform browser redirect
+                header("Location: " . $redirect);
+                // end request
+                exit();
+
+            } else {
+                // $message = 'bad username or password, please try again';
+                require_once __DIR__ . TEMPLATE_DIRECTORY . '/message.php';
+            }
+
+
+        }
+        else {
         $isLoggedIn = $this->isLoggedInFromSession();
         $username = $this->usernameFromSession();
-        require_once TEMPLATE_DIRECTORY . '/login.php';
 
         $pageTitle = 'Login';
         $sitemapLinkStyle = 'current_page';
+        require_once TEMPLATE_DIRECTORY . '/login.php';
+        }
        // require_once TEMPLATE_DIRECTORY . '/login.php';
 
         //      $argsArray = [];
@@ -93,15 +134,31 @@ class MainController
         return $username;
     }
 
+    function doLoginRedirect() {
+        // set session variable for redirect
+        $_SESSION['redirect'] = $_SERVER['REQUEST_URI']; // e.g. /stage_02_php/public/index.php?action=screen
+        // go to login page
+        header("HTTP/1.1 403 Unauthorised");
+        header("Location: " . "index.php?action=login");
+        exit();
+    }
+
     public function screenAction() //\Twig_Environment $twig
     {
 
         $isLoggedIn = $this->isLoggedInFromSession();
-        $username = $this->usernameFromSession();
-        require_once TEMPLATE_DIRECTORY . '/screen.php';
 
-        $pageTitle = 'Screen';
-        $screenLinkStyle = 'current_page';
+        if ($isLoggedIn) {
+            $username = $this->usernameFromSession();
+
+            $pageTitle = 'Screen';
+            $screenLinkStyle = 'current_page';
+            require_once TEMPLATE_DIRECTORY . '/screen.php';
+        }
+        else {
+            $this->doLoginRedirect();
+        }
+
        // require_once TEMPLATE_DIRECTORY .'/screen.php';
 
         //      $argsArray = [];

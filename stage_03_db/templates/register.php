@@ -14,30 +14,30 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
 
 ?>
 
-    <form action="../public/index.php?action=login" method="post">
+    <form action="../public/index.php?action=register" method="post">
 
         <p>
-            First Name: <input type="text" name=firstname">
+            First Name: <br><input type="text" name=firstname" id="firstname" size="30" maxlength="45" required><br>
         </p>
 
         <p>
-            Last Name: <input type="text" name="lastname">
+            Last Name: <br><input type="text" name="lastname" id="lastname" size="30" maxlength="45" required><br>
         </p>
 
         <p>
-            Email: <input type="text" name="email">
+            Email: <br><input type="text" name="email" id="email" size="30" maxlength="100" required><br>
         </p>
 
         <p>
-            Username: <input type="text" name="username">
+            Username: <br><input type="text" name="username" id="username" size="30" maxlength="45" required><br>
         </p>
 
         <p>
-            Password: <input type="text" name="password">
+            Password: <br><input type="text" name="password" id="password" size="30" maxlength="45" required><br>
         </p>
 
         <p>
-            Confirm password: <input type="text" name="password">
+            Confirm password: <br><input type="text" name="password" id="passwordConfirm" size="30" maxlength="45" required><br>
         </p>
 
         <br><br>

@@ -13,18 +13,21 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.index.php';
 
 ?>
 
-    <form action="../public/index.php?action=login" method="post">
+    <form action="index.php?action=login" method="post">
+        <!-- <?= $_SESSION['redirect']; ?> // -->
 
         <p>
-            Username: <input type="text" name="username">
+            Username: <br><input type="text" name="username">
         </p>
 
         <p>
-            Password: <input type="text" name="password">
+            Password: <br><input type="text" name="password">
         </p>
 <br><br>
         <input type="submit" value="  login  ">
-        <input type="submit" value="  Register  ">
+        <input type="submit" value="  Register ">
+
+        // 	<a href="index.php?action=login"><input type="submit" value="login"></a>
 <br><br>
 
     </form>

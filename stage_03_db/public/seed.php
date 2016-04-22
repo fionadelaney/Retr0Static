@@ -12,8 +12,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Phizzle\MainController;
 
 define('DB_HOST','localhost');
-define('DB_USER','fred');
-define('DB_PASS','smith');
+define('DB_USER','root');
+define('DB_PASS','vagrant');
 define('DB_NAME','retr0static');
 
 $eamon = new User();

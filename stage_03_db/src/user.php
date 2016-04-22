@@ -49,8 +49,8 @@ class User extends DatabaseTable
      */
     public function setPassword($password)
     {
-        $hasedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $this->password = $hashedPassword;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+//        $this->password = $hashedPassword;
     }
 
     public function getPassword()
@@ -61,7 +61,7 @@ class User extends DatabaseTable
 
     public function canFindMatchingUsernameAndPassword($username, $password)
     {
-        $user = $this_>getOneByUsername($username);
+        $user = $this->getOneByUsername($username);
 
         // if no record has this username, return FALSE
         if(null == $user){
@@ -94,3 +94,9 @@ class User extends DatabaseTable
         }
     }
 }
+
+/*
+
+create table user( id UNSIGNED INT AUTO_INCREMENT, username VARCHAR(30), password VARCHAR(255), role TINY INT DEFAULT 1);
+
+ */
