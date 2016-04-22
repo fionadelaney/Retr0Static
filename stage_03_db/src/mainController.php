@@ -22,7 +22,6 @@ class MainController
             $isLoggedIn = false; //default is bad login
 
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
             $hashedCorrectPassword = password_hash('admin', PASSWORD_DEFAULT);
@@ -204,11 +203,11 @@ class MainController
 
         $isLoggedIn = $this->isLoggedInFromSession();
         $username = $this->usernameFromSession();
-        require_once TEMPLATE_DIRECTORY . '/news.php';
+
 
         $pageTitle = 'News';
         $newsLinkStyle = 'current_page';
-       // require_once __DIR__ . '/../templates/news.php';
+        require_once TEMPLATE_DIRECTORY . '/news.php';
 
         //      $argsArray = [];
         //      $template = 'news';
@@ -220,11 +219,11 @@ class MainController
     {
         $isLoggedIn = $this->isLoggedInFromSession();
         $username = $this->usernameFromSession();
-        require_once TEMPLATE_DIRECTORY . '/insight.php';
+
 
         $pageTitle = 'Insight';
         $insightLinkStyle = 'current_page';
-       // require_once __DIR__ . '/../templates/insight.php';
+        require_once TEMPLATE_DIRECTORY . '/insight.php';
 
         //      $argsArray = [];
         //      $template = 'insight';
@@ -249,12 +248,10 @@ class MainController
 
         $isLoggedIn = $this->isLoggedInFromSession();
         $username = $this->usernameFromSession();
-        require_once TEMPLATE_DIRECTORY . '/shop.php';
 
         $pageTitle = 'Shop';
         $shopLinkStyle = 'current_page';
-       //  require_once __DIR__ . '/game.php';
-       // require_once __DIR__ . '/../templates/shop.php';
+        require_once TEMPLATE_DIRECTORY . '/shop.php';
 
         //      $argsArray = [];
         //      $template = 'shop';
