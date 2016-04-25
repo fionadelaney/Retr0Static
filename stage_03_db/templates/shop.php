@@ -8,7 +8,7 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 
 <div id="aside_shop">
 <p>
-<a href="index.php?action=login"><img src="../public/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
+<a href="index.php?action=login"><img src="/buttons/key.png" alt="Login Button" width="80%" height="auto"></a>
 <br>
 </p>
 <br>
@@ -54,7 +54,7 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
             <td> <?= $product->getGameTitle() ?> </td>
             <td> <?= $product->getGamePlatform() ?> </td>
             <td> <?= $product->getGamePrice() ?> </td>
-            <td><img src="../public/images/<?= $product->getGameScreen() ?>" alt="<?= $product->getGameTitle() ?> screen" width="100%" height="auto"></td>
+            <td><img src="/images/<?= $product->getGameScreen() ?>" alt="<?= $product->getGameTitle() ?> screen" width="100%" height="auto"></td>
             <td><a href="<?= $product->getGameDevUrl() ?>" target="blank"><?= $product->getGameDev() ?></a></td>
             <td> <?= $product->getGameDesc() ?> </td>
         </tr>
@@ -78,14 +78,14 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 <div id="main_shop">
 
 <p>
-<img src="../public/assets1/Retr0Static.gif" alt="logo gif" width="100%" height="auto">
+<img src="/assets1/Retr0Static.gif" alt="logo gif" width="100%" height="auto">
 </p>
 
 </div>
 
 <?php
 //-------------------------------------------
-require_once __DIR__ . '/../templates/footer.inc.php';
+require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 
 //  don't close the PHP tags
 

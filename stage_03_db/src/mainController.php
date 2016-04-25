@@ -24,11 +24,11 @@ class MainController
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-            $hashedCorrectPassword = password_hash('admin', PASSWORD_DEFAULT);
 
             // search for user with username in repository
             //$userRepository = new UserRepository();
             $user = new User();
+
             $isLoggedIn = $user->canFindMatchingUsernameAndPassword($username, $password);
 
             // if(('admin' ==$username) && password_verify ($password, $hashedCorrectPassword)){
@@ -48,8 +48,10 @@ class MainController
                 exit();
 
             } else {
+
+
                 // $message = 'bad username or password, please try again';
-                require_once __DIR__ . TEMPLATE_DIRECTORY . '/message.php';
+                require_once TEMPLATE_DIRECTORY . '/message.php';
             }
 
 
@@ -71,6 +73,20 @@ class MainController
 
     }
 
+    public function logoutAction() // \Twig_Environment $twig
+    {
+        $isLoggedIn = $this->isLoggedInFromSession();
+        if ($isLoggedIn) {
+            // ensure there is a session
+            session_start();
+            // end the session
+            session_destroy();
+            // redirect to home page
+            header("Location: " . "index.php");
+            exit();
+        }
+    }
+
     public function registerAction() // \Twig_Environment $twig
     {
 
@@ -84,6 +100,7 @@ class MainController
     }
 
 
+    /*
     public function processLoginAction()
     {
         $isLoggedIn = false; //default is bad login
@@ -112,12 +129,12 @@ class MainController
             require_once __DIR__ . TEMPLATE_DIRECTORY . '/message.php';
         }
     }
-
+*/
     public function isLoggedInFromSession() {
         $isLoggedIn = false;
 
         // user is logged in if there is a 'user' entry in the SESSION superglobal
-        if(isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             $isLoggedIn = true;
         }
         return $isLoggedIn;
@@ -200,14 +217,18 @@ class MainController
     public function newsAction() //\Twig_Environment $twig
     {
 
-
         $isLoggedIn = $this->isLoggedInFromSession();
-        $username = $this->usernameFromSession();
 
+        if ($isLoggedIn) {
+            $username = $this->usernameFromSession();
 
-        $pageTitle = 'News';
-        $newsLinkStyle = 'current_page';
-        require_once TEMPLATE_DIRECTORY . '/news.php';
+            $pageTitle = 'News';
+            $screenLinkStyle = 'current_page';
+            require_once TEMPLATE_DIRECTORY . '/news.php';
+        }
+        else {
+            $this->doLoginRedirect();
+        }
 
         //      $argsArray = [];
         //      $template = 'news';
@@ -218,12 +239,17 @@ class MainController
     public function insightAction()  //\Twig_Environment $twig
     {
         $isLoggedIn = $this->isLoggedInFromSession();
-        $username = $this->usernameFromSession();
 
+        if ($isLoggedIn) {
+            $username = $this->usernameFromSession();
 
-        $pageTitle = 'Insight';
-        $insightLinkStyle = 'current_page';
-        require_once TEMPLATE_DIRECTORY . '/insight.php';
+            $pageTitle = 'Insight';
+            $screenLinkStyle = 'current_page';
+            require_once TEMPLATE_DIRECTORY . '/insight.php';
+        }
+        else {
+            $this->doLoginRedirect();
+        }
 
         //      $argsArray = [];
         //      $template = 'insight';
@@ -233,9 +259,13 @@ class MainController
 
     public function indexAction() //\Twig_Environment $twig
     {
+        $isLoggedIn = $this->isLoggedInFromSession();
+        if ($isLoggedIn) {
+            $username = $this->usernameFromSession();
+        }
         $pageTitle = 'Home';
         $indexLinkStyle = 'current_page';
-        require_once __DIR__ . '/../templates/index.php';
+        require_once TEMPLATE_DIRECTORY . '/index.php';
 
         //      $argsArray = [];
         //      $template = 'home';
@@ -247,11 +277,17 @@ class MainController
     {
 
         $isLoggedIn = $this->isLoggedInFromSession();
-        $username = $this->usernameFromSession();
 
-        $pageTitle = 'Shop';
-        $shopLinkStyle = 'current_page';
-        require_once TEMPLATE_DIRECTORY . '/shop.php';
+        if ($isLoggedIn) {
+            $username = $this->usernameFromSession();
+
+            $pageTitle = 'Shop';
+            $screenLinkStyle = 'current_page';
+            require_once TEMPLATE_DIRECTORY . '/shop.php';
+        }
+        else {
+            $this->doLoginRedirect();
+        }
 
         //      $argsArray = [];
         //      $template = 'shop';

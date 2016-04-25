@@ -31,27 +31,18 @@ $sitemapLinkStyle = isset($sitemapLinkStyle) ? $sitemapLinkStyle : '';
 */
 //-------------------------------------------------
 
-if($isLoggedIn):
+if ($isLoggedIn) {
+    $logout = '<span id="logout">Logged in as: <strong><?= $username ?></strong>
+    <a href="index.php?action=logout">(logout)</a></span>';
+} else {
+    $logout = '';
+}
 ?>
 
-<div id="header">
-    <h1>Retr0Static | <?= $this->pageTitle = $pageTitle ?></h1> Logged in as: <strong><?= $username ?></strong>
-    <a href="/index.php?action=logout">(logout)</a>
-</div>
-
-<?php
-// -----
-else:
-//------
-?>
-<div id="header">
+<header id="header">
     <h1>Retr0Static | <?= $this->pageTitle = $pageTitle ?></h1>
-</div>
-
-<?php
-
-endif;
-?>
+    <?= $logout; ?>
+</header>
 
 <div align="center" id="nav">
     <nav>

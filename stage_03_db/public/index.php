@@ -4,36 +4,45 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Phizzle\MainController;
 
+// start session
+session_start();
+
 define('DB_HOST','localhost');
-define('DB_USER','fred');
-define('DB_PASS','smith');
+define('DB_USER','root');
+define('DB_PASS','vagrant');
 define('DB_NAME','retr0static');
 
 // get action GET parameter (if it exists)
-$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+$action = strtolower(filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING));
 
 $mainController = new MainController();
 
-if('login' == $action) {
-    $mainController->loginAction(); //$twig
-} else if('register' == $action) {
-    $mainController->registerAction(); //$twig
-} else if('insight' == $action) {
-    $mainController->insightAction(); //$twig
-} else if ('screen' == $action) {
-    $mainController->screenAction(); //$twig
-} else if ('news' == $action) {
-    $mainController->newsAction(); //$twig
-} else if ('shop' == $action) {
-    $mainController->shopAction(); //$twig
-} else if ('sitemap' == $action) {
-    $mainController->sitemapAction(); //$twig
-} else if ('login' == $action) {
-    $mainController->loginAction(); //$twig
-} else {
-    // default is home page ('index' action)
-    $mainController->indexAction(); //$twig
+switch ($action) {
+    case 'login' :
+        $mainController->loginAction();
+        break;
+    case 'logout' :
+        $mainController->logoutAction();
+        break;
+    case 'register' :
+        $mainController->registerAction();
+        break;
+    case 'insight' :
+        $mainController->insightAction();
+        break;
+    case 'news' :
+        $mainController->newsAction();
+        break;
+    case 'screen' :
+        $mainController->screenAction();
+        break;
+    case 'shop' :
+        $mainController->shopAction();
+        break;
+    case 'sitemap' :
+        $mainController->sitemapAction();
+        break;
+    default:
+        $mainController->indexAction(); //$twig
 }
-
-
 

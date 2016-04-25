@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../templates/header1.inc.php';
-require_once __DIR__ . '/../templates/nav.inc.php';
+require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
+require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 //-------------------------------------------
 
 ?>
@@ -22,11 +22,11 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 <table border = "0px">
 
 <tr>
-<td><a href="https://www.youtube.com/watch?v=iScHVPjP1jU" class="video_link" target="blank"><img src="../public/images/246bioshock.jpg" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=CoYorK3E4aM" class="video_link" target="blank"><img src="../public/images/bioshock_ss.jpg" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=Z8EA7EbFX4k" class="video_link" target="blank"><img src="../public/images/prince.JPG" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=Be6HXPBRwoQ" class="video_link" target="blank"><img src="../public/images/chili.jpg" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=n8UOEt0-WqU&ebc=ANyPxKqJJ_png__4Fd8DBWajf_QtlCyUY_w-UDD6KAegELP26Eqfjj5qlU0QGm5X482pxeyEhk2qh83Yu8R7Zjsfn-EHTv6rgw" class="video_link" target="_blank"><img src="../public/images/reality_2.png" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=iScHVPjP1jU" class="video_link" target="blank"><img src="/images/246bioshock.jpg" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=CoYorK3E4aM" class="video_link" target="blank"><img src="/images/bioshock_ss.jpg" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=Z8EA7EbFX4k" class="video_link" target="blank"><img src="/images/prince.JPG" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=Be6HXPBRwoQ" class="video_link" target="blank"><img src="/images/chili.jpg" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=n8UOEt0-WqU&ebc=ANyPxKqJJ_png__4Fd8DBWajf_QtlCyUY_w-UDD6KAegELP26Eqfjj5qlU0QGm5X482pxeyEhk2qh83Yu8R7Zjsfn-EHTv6rgw" class="video_link" target="_blank"><img src="/images/reality_2.png" width="100%" height="auto"></a></td>
 
 </tr>
 
@@ -37,11 +37,11 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 <th><h3>Sims2 TV dkidluke</h3></th>
 
 <tr>
-<td><a href="https://www.youtube.com/watch?v=Qd_x-S7IpHA" class="video_link" target="_blank"><img src="../public/images/mountain.png" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=LhFeyJ00fdo" class="video_link" target="_blank"><img src="../public/images/Chili_Con_Carnage.jpg" width="100%" height="auto"></a></td>
-<td><a href="http://www.davidoreilly.com/projects/her/" class="video_link" target="blank"><img src="../public/images/her2.jpg" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=QHHzMLL8ERs" class="video_link" target="blank"><img src="../public/images/baldursgate_ss.png" width="100%" height="auto"></a></td>
-<td><a href="https://www.youtube.com/watch?v=cKpKv8lGG9o" class="video_link" target="_blank"><img src="../public/images/reality_1.png" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=Qd_x-S7IpHA" class="video_link" target="_blank"><img src="/images/mountain.png" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=LhFeyJ00fdo" class="video_link" target="_blank"><img src="/images/Chili_Con_Carnage.jpg" width="100%" height="auto"></a></td>
+<td><a href="http://www.davidoreilly.com/projects/her/" class="video_link" target="blank"><img src="/images/her2.jpg" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=QHHzMLL8ERs" class="video_link" target="blank"><img src="/images/baldursgate_ss.png" width="100%" height="auto"></a></td>
+<td><a href="https://www.youtube.com/watch?v=cKpKv8lGG9o" class="video_link" target="_blank"><img src="/images/reality_1.png" width="100%" height="auto"></a></td>
 
 </tr>
 
@@ -58,8 +58,8 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
         ?>
         <tr>
-            <td><img src="../public/images/<?= $video->getGameScreen() ?>" alt="<?= $video->getGameTitle() ?> screen" width="100%" height="auto"></td>
-            <td><a href="<?= $video->getVideoUrl() ?>" target="blank"></a></td>
+            <td><a href="<?= $video->getVideoUrl() ?>" target="blank"><img src="/images/<?= $video->getGameScreen() ?>" alt="<?= $video->getGameTitle() ?> screen" width="100%" height="auto" /></a></td>
+            <td><a href="<?= $video->getVideoUrl() ?>" target="blank"><?= $video->getGameTitle() ?></a></td>
         </tr>
 
         <?php
@@ -79,13 +79,13 @@ require_once __DIR__ . '/../templates/nav.inc.php';
 
 <div id="main_screen">
 <caption><h1>Play...</h1></caption>
-<td><a href="http://www.codemystics.com/halo2600/" class="video_link" target="blank"><img src="../public/images/halo.jpg" width="100%" height="auto"></a></td>
+<td><a href="http://www.codemystics.com/halo2600/" class="video_link" target="blank"><img src="/images/halo.jpg" width="100%" height="auto"></a></td>
 </div>
 
 
 <?php
 //-------------------------------------------
-require_once __DIR__ . '/../templates/footer.inc.php';
+require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 
 //  don't close the PHP tags
 

@@ -5,11 +5,14 @@
 	color:#1A5F7C;
 	font-family: "Courier New", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	text-align:left;
-	padding: 1px 5px 0px 148px;
+	padding: 20px 5px 2px 50px;
 	margin-top: 16px;
 	margin-bottom: 20px;
 	border-radius: 8px;
-	}
+	min-height: 40px;
+	min-width: 550px;
+	display: block;
+}
 
 
 #footer {

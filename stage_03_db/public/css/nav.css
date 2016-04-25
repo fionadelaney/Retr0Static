@@ -1,5 +1,20 @@
 /* ------- nav ------- */
 
+#header h1 {
+	float: left;
+	margin: 0;
+}
+
+#logout {
+	float: right;
+	padding: 12px 30px 5px 5px;
+}
+
+
+#nav {
+	clear: both;
+}
+
 nav ul {
 	display: flex;
 	list-style-type: none;

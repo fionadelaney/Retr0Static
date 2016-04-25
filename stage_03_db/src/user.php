@@ -64,12 +64,18 @@ class User extends DatabaseTable
         $user = $this->getOneByUsername($username);
 
         // if no record has this username, return FALSE
-        if(null == $user){
+        if (null == $user){
             return false;
         }
 
         // hashed correct password
         $hashedStoredPassword = $user->getPassword();
+        // FAKE IT FOR NOW - hash the database password so it can be verified
+        //$hashedStoredPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+
+        //session_start();
+        //$_SESSION['user_pass'] = $hashedStoredPassword;
+
 
         // return whether or not hash of input password matched stored hash
         return password_verify($password, $hashedStoredPassword);
@@ -79,17 +85,15 @@ class User extends DatabaseTable
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $sql = 'SELECT * FROM users WHERE username=:username';
+        $sql = 'SELECT * FROM user WHERE username=:username';
         $statement = $connection->prepare($sql);
         $statement->bindParam(':username', $username, \PDO::PARAM_STR);
         $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
         $statement->execute();
 
         if ($object = $statement->fetch()) {
-
             return $object;
         } else {
-
             return null;
         }
     }

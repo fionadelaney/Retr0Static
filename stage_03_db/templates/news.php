@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../templates/header1.inc.php';
-require_once __DIR__ . '/../templates/nav.inc.php';
+require_once TEMPLATE_DIRECTORY . '/header1.inc.php';
+require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 //-------------------------------------------
 
 
@@ -48,7 +48,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 <?php
 //-------------------------------------------
-require_once __DIR__ . '/../templates/footer.inc.php';
+require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 
 //  don't close the PHP tags
 

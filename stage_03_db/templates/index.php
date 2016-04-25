@@ -7,9 +7,9 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 
 <div id="aside_index">
 	<p>
-		<a href="shop.php?action=shop"><img src="../public/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
-		<a href="index.php?action=login"><img src="../public/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
-		<a href="https://www.facebook.com/retr0static/"class="button"target="_blank"><img src="../public/buttons/social-facebook-button-blue-icon.png" alt="Facebook Button" width="45%" height="auto%"></a>
+		<a href="shop.php?action=shop"><img src="/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
+		<a href="index.php?action=login"><img src="/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
+		<a href="https://www.facebook.com/retr0static/"class="button"target="_blank"><img src="/buttons/social-facebook-button-blue-icon.png" alt="Facebook Button" width="45%" height="auto%"></a>
 		<br>
 	</p>
 	<br>
@@ -22,8 +22,8 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 	<aside><strong>GAME OF THE WEEK: </strong><em> Irrational Games</em><strong> BIOSHOCK </strong><em>  2007</em></aside><br>
 	</p>
 
-	<img src="../public/assets1/Retr0Static.gif" alt="logo gif" width="33%" height="auto">
-	<img src="../public/images/bioshock.jpg" alt="Bioshock Covers" width="41%" height="auto">
+	<img src="/assets1/Retr0Static.gif" alt="logo gif" width="33%" height="auto">
+	<img src="/images/bioshock.jpg" alt="Bioshock Covers" width="41%" height="auto">
 
 
 	<br><blockquote>
@@ -33,7 +33,7 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 			 Big Daddy, a key battle character and guardian of the orphaned little sisters. Unless you can defeat him in Rapture, the toxic
 			city beneath the waves, let's just say things just don't end well...<br><br>
 
-		<img src="../public/images/246crop_bioshock.jpg" alt="Bioshock" width="95%" height="auto"><br><br>
+		<img src="/images/246crop_bioshock.jpg" alt="Bioshock" width="95%" height="auto"><br><br>
 			Ayn Rand's writings were a source of inspiration for the origins and demise of
 			Rapture City in underwater-sci-fi, environmental-disaster game Bioshock.<br><br>
 
@@ -44,6 +44,6 @@ require_once TEMPLATE_DIRECTORY . '/nav.inc.php';
 
 <?php
 //-------------------------------------------
-require_once __DIR__ . '/../templates/footer.inc.php';
+require_once TEMPLATE_DIRECTORY . '/footer.inc.php';
 
 //  don't close the PHP tags

@@ -3,11 +3,9 @@
 <head>
     <title>Retr0Static | <?= $pageTitle ?></title>
     <meta charset="utf-8">
-    <style>
-        @import "../public/css/body.css";
-        @import "../public/css/nav.css";
-        @import "../public/css/head_foot.css";
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/body.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="/css/head_foot.css" />
 </head>
 <body>
 
