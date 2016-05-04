@@ -1,0 +1,38 @@
+{% extends 'admin/_adminBase.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}User Admin{% endblock %}
+
+{# ------------------------------------------------- #}
+{% set myRole = user.getRole() %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="register">
+            <h1>Register</h1>
+            <form method="post" action="/admin/index.php?action=user">
+
+        <p><input type="text" name="firstname" id="firstname" size="30" maxlength="45" value="{{ user.getFirstname }}" placeholder="First Name" required /></p>
+
+        <p><input type="text" name="lastname" id="lastname" size="30" maxlength="45" value="{{ user.getLastname }}" placeholder="Last Name" required /></p>
+
+        <p><input type="email" name="email" id="email" size="30" maxlength="100" value="{{ user.getEmail }}" placeholder="your@email.address" required /></p>
+
+        <p><input type="text" name="username" id="username" size="30" maxlength="45" value="{{ user.getUsername }}" placeholder="Username" required /></p>
+
+        <p><input type="password" name="password" id="password" size="30" maxlength="45" value="" placeholder="Password" {% if "" == id %} required{% endif %}/></p>
+
+        <p><select name="role" id="role" required>
+                <option value="">Select Role</option>
+                <option value="1"{% if 1 == myRole %} selected{% endif %}>Member</option>
+                <option value="2"{% if 2 == myRole %} selected{% endif %}>Admin</option>
+            </select></p>
+
+        <p><input type="submit" value="Submit"></p>
+                <input type="hidden" value="{{ user.getId }}" name="id" />
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

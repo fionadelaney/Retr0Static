@@ -32,7 +32,7 @@ class MainController
 
             // search for user with username in repository
             //$userRepository = new UserRepository();
-            $user = new User();
+            $user = new UserRepository();
 
             $isLoggedIn = $user->canFindMatchingUsernameAndPassword($username, $password);
 
