@@ -1,0 +1,47 @@
+{% extends '_base.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}About page{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+    <div id="aside_index">
+        <p>
+            <a href="{{ action_url('shop') }}"><img src="/buttons/grunge_cart.png" alt="Shopping Cart" width="100%" height="auto"></a>
+            <a href="{{ action_url('login') }}"><img src="/buttons/key.png" alt="Login Button" width="60%" height="auto"></a>
+            <a href="https://www.facebook.com/retr0static/"class="button"target="_blank"><img src="/buttons/social-facebook-button-blue-icon.png" alt="Facebook Button" width="45%" height="auto%"></a>
+            <br>
+        </p>
+        <br>
+    </div>
+
+    <div id="section_index">
+
+        <p>
+        <h2><strong>Retro-Gaming Members Club </strong><br><em> buy</em> | <em>swap</em> | <em>share </em><br></h2
+        <aside><strong>GAME OF THE WEEK: </strong><em> Irrational Games</em><strong> BIOSHOCK </strong><em>  2007</em></aside><br>
+        </p>
+
+        <img src="/assets1/Retr0Static.gif" alt="logo gif" width="33%" height="auto">
+        <img src="/images/bioshock.jpg" alt="Bioshock Covers" width="41%" height="auto">
+
+
+        <br><blockquote>
+
+            "The question isn't <em>who</em> is going to <em>let</em> me; it's <em>who</em> is going to <em>stop</em> me?"</strong>
+            <strong>Ayn Rand</strong> author of <strong>Atlas Shrugged </strong>(1957)<br><br> According to Bioshock, the answer is
+            Big Daddy, a key battle character and guardian of the orphaned little sisters. Unless you can defeat him in Rapture, the toxic
+            city beneath the waves, let's just say things just don't end well...<br><br>
+
+            <img src="/images/246crop_bioshock.jpg" alt="Bioshock" width="95%" height="auto"><br><br>
+            Ayn Rand's writings were a source of inspiration for the origins and demise of
+            Rapture City in underwater-sci-fi, environmental-disaster game Bioshock.<br><br>
+
+            Released in 2007 by Irrational Games, Bioshock enjoyed multiple incarnations with publisher K2
+            until it's most recent release for mobile in 2013.<br>
+        </blockquote>
+    </div>
+
+
+{% endblock %}

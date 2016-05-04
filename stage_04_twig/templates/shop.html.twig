@@ -1,0 +1,52 @@
+{% extends '_base.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}Siopa{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+
+    <div id="section_shop">
+
+        <blockquote>
+            <h2><strong>Secondhand video games for all platforms</strong></h2>
+            <p>Sci-fi, historical, fantasy, geo-political, thriller, <br/>shoot-em-up, chill-out, car-chase, quest and more...</p>
+        </blockquote>
+
+        <!-- start table for displaying Game details -->
+        <h2>Games</h2>
+
+        <table>
+            <tr>
+                <th> ID </th>
+                <th> Title </th>
+                <th> Platform </th>
+                <th> &euro; </th>
+                <th> Screengrab </th>
+                <th> Dev </th>
+                <th> Description </th>
+            </tr>
+            {% for item in game_list %}
+                <tr>
+                    <td>{{ item.getGameId() }}</td>
+                    <td>{{ item.getGameTitle() }}</td>
+                    <td>{{ item.getGamePlatform() }}</td>
+                    <td>{{ item.getGamePrice() }}</td>
+                    <td><img src="/images/{{ item.getGameScreen() }}" alt="{{ item.getGameTitle() }} screen" width="100%" height="auto" /></td>
+                    <td><a href="{{ item.getGameDevUrl() }}" target="blank">{{ item.getGameDev() }}</a></td>
+                    <td>{{  item.getGameDesc() }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <div id="main_shop">
+        <p>
+            <img src="/assets1/Retr0Static.gif" alt="logo gif" width="100%" height="auto">
+        </p>
+    </div>
+
+{% endblock %}

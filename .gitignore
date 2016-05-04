@@ -1,6 +1,7 @@
 # Folder view configuration files
 .DS_Store
 Desktop.ini
+.idea
 
 # Thumbnail cache files
 ._*
@@ -21,3 +22,4 @@ venv
 node_modules
 .sass-cache
 
+*.log

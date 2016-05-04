@@ -59,7 +59,7 @@ class UserRepository
 
     public function canFindMatchingUsernameAndPassword($username, $password)
     {
-        $user = $this_>getOneByUsername($username);
+        $user = $this->getOneByUsername($username);
 
         // if no record has this username, return FALSE
         if(null == $user){

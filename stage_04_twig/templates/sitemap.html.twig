@@ -1,0 +1,22 @@
+{% extends '_base.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}Sitemap{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+
+<div id="section">
+
+<ul>
+  <li><a href="{{ action_url('index') }}" class="buttontree">Home</a></li>
+  <li><a href="{{ action_url('screen') }}" class="button">Screen</a></li>
+  <li><a href="{{ action_url('news') }}" class="button">News</a></li>
+  <li><a href="{{ action_url('insight') }}" class="button">Insight</a></li>
+  <li><a href="{{ action_url('shop') }}" class="button">Shop</a></li>
+</ul>
+
+</div>
+
+{% endblock %}
