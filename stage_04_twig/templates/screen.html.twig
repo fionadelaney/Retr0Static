@@ -1,7 +1,7 @@
 {% extends '_base.html.twig' %}
 
 {# ------------------------------------------------- #}
-{% block pageTitle %}Register{% endblock %}
+{% block pageTitle %}Screen{% endblock %}
 
 {# ------------------------------------------------- #}
 {% block main %}
@@ -50,8 +50,8 @@
 
         {% for video in watch_list %}
         <tr>
-            <td><a href="{{ video->getVideoUrl() }}" target="blank"><img src="/images/{{ video->getGameScreen() }}" alt="{{ video->getGameTitle() }} screen" width="100%" height="auto" /></a></td>
-            <td><a href="{{ video->getVideoUrl() }}" target="blank">{{ video->getGameTitle() }}</a></td>
+            <td><a href="{{ video.getVideoUrl }}" target="blank"><img src="/images/{{ video.getGameScreen }}" alt="{{ video.getGameTitle }} screen" width="100%" height="auto" /></a></td>
+            <td><a href="{{ video.getVideoUrl }}" target="blank">{{ video.getGameTitle }}</a></td>
         </tr>
         {% endfor %}
     </table>

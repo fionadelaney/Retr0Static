@@ -213,34 +213,26 @@ class MainController
         exit();
     }
 
-    public function screenAction() //\Twig_Environment $twig
+    public function screenAction(\Twig_Environment $twig)
     {
 
+        $data = array( 'page_title' => 'Screen' );
         $isLoggedIn = $this->isLoggedInFromSession();
 
         if ($isLoggedIn) {
-            $username = $this->usernameFromSession();
-
-            $pageTitle = 'Screen';
-            $screenLinkStyle = 'current_page';
-            $watch_list = $this->screenListingAction();
-            require_once TEMPLATE_DIRECTORY . '/screen.php';
+            $data['username'] = $this->usernameFromSession();
+            $data['watch_list'] = $this->screenListingAction();
+            $template = 'screen';
+            $htmlOutput = $twig->render($template . '.html.twig', $data);
+            print $htmlOutput;
         }
         else {
             $this->doLoginRedirect();
         }
 
-       // require_once TEMPLATE_DIRECTORY .'/screen.php';
-
-        //      $argsArray = [];
-        //      $template = 'screen';
-        //      $htmlOutput = $twig->($template . '.html.twig', $argsArray);
-        //      print $htmlOutput;
-
-
     }
 
-    public function screenListingAction() //\Twig_Environment $twig
+    public function screenListingAction()
     {
         $watch_list = [];
         $watch_list[] = new Watch('246bioshock.jpg', 'Bioshock Playthrough',
