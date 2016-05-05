@@ -60,10 +60,22 @@ class Utility
 
     }
 
+    public static function isUserAuthorised() {
+        $authorised = false;
+        // User is set in session so we need to check their role
+        $username = $_SESSION['user'];
+        $role = $_SESSION['role'];
+        $db = new \Phizzle\UserRepository;
+        if ($db->canFindUsernameWithAdminRole($username, $role)) {
+            $authorised = true;
+        }
+        return $authorised;
+    }
+
     public static function checkUserIsAuthorised() {
 
         $authorised = false;
-        
+
         if (! self::isLoggedInFromSession()) {
             // User is not logged in!
             header("HTTP/1.1 403 Unauthorised");
@@ -71,15 +83,9 @@ class Utility
             exit();
         }
         else {
-            // User is set in session so we need to check their role
-            $username = $_SESSION['user'];
-            $role = $_SESSION['role'];
-            $db = new \Phizzle\UserRepository;
-            if ($db->canFindUsernameWithAdminRole($username, $role)) {
-                $authorised = true;
-            }
+            $authorised = self::isUserAuthorised();
         }
-        
+
         return $authorised;
 
     }

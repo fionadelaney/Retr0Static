@@ -1,4 +1,4 @@
-{% extends '_base.html.twig' %}
+{% extends 'admin/_adminBase.html.twig' %}
 
 {# ------------------------------------------------- #}
 {% block pageTitle %}Developers{% endblock %}
@@ -14,14 +14,12 @@
                 <tr>
                     <th> Developer </th>
                     <th> &nbsp; </th>
-                    <th> &nbsp; </th>
-                    <th> &nbsp; </th>
+                    <th> <a href="/index.php?admin/developer/create" title="New Developer" class="btn btn-new">New</a> </th>
                 </tr>
                 {% for item in developer_list %}
                     <tr>
                         <td>{{ item.name }}</td>
-                        <td><a href="/index.php?admin/developer/view/{{ item.id }}" title="View" class="btn btn-view">View</a></td>
-                        <td><a href="/index.php?admin/developer/edit/{{ item.id }}" title="Edit" class="btn btn-edit">Edit</a></td>
+                        <td><a href="/index.php?admin/developer/update/{{ item.id }}" title="Update" class="btn btn-update">Update</a></td>
                         <td><a href="/index.php?admin/developer/delete/{{ item.id }}" title="Delete" class="btn btn-delete">Delete</a></td>
                     </tr>
                 {% endfor %}

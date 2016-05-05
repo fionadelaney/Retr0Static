@@ -1,0 +1,18 @@
+{% extends '_base.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}Developer Details{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+<div id="main">
+<h1>{{ developer.name }}</h1>
+<p>
+Website: <a href="{{ developer.url }}" title="{{ developer.name }}">{{ developer.url }}</a>
+</p>
+
+<p>{{ developer.description }}</p>
+</div>
+
+{% endblock %}

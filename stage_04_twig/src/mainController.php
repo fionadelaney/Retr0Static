@@ -31,14 +31,15 @@ class MainController
 
 
             // search for user with username in repository
-            //$userRepository = new UserRepository();
-            $user = new UserRepository();
+            $userDb = new UserRepository();
 
-            $isLoggedIn = $user->canFindMatchingUsernameAndPassword($username, $password);
+            $isLoggedIn = $userDb->canFindMatchingUsernameAndPassword($username, $password);
 
             if ($isLoggedIn) {
+                $user = $userDb->getOnebyUsername($username);
                 //STORE login status SESSION
                 $_SESSION['user'] = $username;
+                $_SESSION['role'] = $user->getRole();
                 // set the redirect location
                 $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : 'index.php';
                 // perform browser redirect
@@ -104,15 +105,7 @@ class MainController
             $logger->addInfo('A form was posted.');
             
                 $logger->addInfo('We have a registration form.');
-/*
-                // Retrieve the field values from the registration form.
-                $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-                $pass = !empty($_POST['password']) ? trim($_POST['password']) : null;
-                $confirm = !empty($_POST['confirm']) ? trim($_POST['confirm']) : null;
-                $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-                $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
-                $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
-*/
+
                 $validation_rules = array(
                     'username' => array( 'type' => 'string', 'required' => true, 'min' => 3, 'max' => 50, 'trim' => true ),
                     'email' => array( 'type' => 'email', 'required' => true, 'trim' => true ),
@@ -149,6 +142,7 @@ class MainController
                         }
                         // store the username in the session
                         $_SESSION['user'] = $newSignup->getUsername();
+                        $_SESSION['role'] = $newSignup->getRole();
                         // render the welcome template
                         print $twig->render('thanks.html.twig', array( 'firstname' => $newSignup->getFirstname(), 'username' => $newSignup->getUsername() ));
                     }
@@ -215,16 +209,14 @@ class MainController
 
     public function screenAction(\Twig_Environment $twig)
     {
-
         $data = array( 'page_title' => 'Screen' );
         $isLoggedIn = $this->isLoggedInFromSession();
 
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
+            $data['isAdmin'] = Utility::isUserAuthorised();
             $data['watch_list'] = $this->screenListingAction();
-            $template = 'screen';
-            $htmlOutput = $twig->render($template . '.html.twig', $data);
-            print $htmlOutput;
+            print $twig->render('screen.html.twig', $data);
         }
         else {
             $this->doLoginRedirect();
@@ -269,6 +261,7 @@ class MainController
 
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
+            $data['isAdmin'] = Utility::isUserAuthorised();
             $template = 'news';
             $htmlOutput = $twig->render($template . '.html.twig', $data);
             print $htmlOutput;
@@ -286,6 +279,7 @@ class MainController
 
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
+            $data['isAdmin'] = Utility::isUserAuthorised();
             $template = 'insight';
             $htmlOutput = $twig->render($template . '.html.twig', $data);
             print $htmlOutput;
@@ -304,6 +298,7 @@ class MainController
         $isLoggedIn = $this->isLoggedInFromSession();
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
+            $data['isAdmin'] = Utility::isUserAuthorised();
         }
 
         $htmlOutput = $twig->render($template . '.html.twig', $data);
@@ -321,6 +316,7 @@ class MainController
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
             $data['game_list'] = $this->shopListingAction();
+            $data['isAdmin'] = Utility::isUserAuthorised();
         }
         else {
             $this->doLoginRedirect();
@@ -382,6 +378,7 @@ class MainController
 
         if ($isLoggedIn) {
             $data['username'] = $this->usernameFromSession();
+            $data['isAdmin'] = Utility::isUserAuthorised();
         }
 
         $template = 'sitemap';

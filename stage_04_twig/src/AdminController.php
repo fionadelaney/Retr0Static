@@ -54,15 +54,16 @@ class AdminController
     public function indexAction(\Twig_Environment $twig)
     {
         // For URL http://localhost:8080/index.php?admin/developer/view/123
-        $urlStr =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        //$urlStr =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
         // urlStr = //localhost/index.php?admin/developer/view/123
-        $urlQuery = parse_url( $urlStr , PHP_URL_QUERY );
+        //$urlQuery = parse_url( $urlStr , PHP_URL_QUERY );
         // urlQuery = admin/developer/view/123
-        $urlPieces = explode('/', $myUrl);
+        //$urlPieces = explode('/', $myUrl);
         // urlPieces = [ 'admin', 'developer', 'view', '123' ]
 
-        $logger->addInfo('AdminController: indexAction().');
+        $data = array( 'page_title' => 'Retr0static Admin');
 
-        
+        print $twig->render('admin/index.html.twig', $data);
+
     }
 }
