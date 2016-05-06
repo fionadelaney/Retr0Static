@@ -1,15 +1,22 @@
 <?php
-
+/**
+ * UserRepository.php
+ */
 namespace Phizzle;
 
 use \Phizzle\User;
 use \Mattsmithdev\PdoCrud\DatabaseManager;
 use \Mattsmithdev\PdoCrud\DatatbaseUtility;
 
+/**
+ * Class UserRepository
+ * @package Phizzle
+ */
 class UserRepository
 {
 
     /**
+     * Adds a new User to the database and returns the 'id'
      * @param \Phizzle\User $user
      * @return int
      */
@@ -34,6 +41,7 @@ class UserRepository
     }
 
     /**
+     * Updates the database record of a User
      * @param \Phizzle\User $user
      * @param int $id
      *
@@ -63,6 +71,7 @@ class UserRepository
 
 
     /**
+     * Deletes a User record from the database
      * @param $id
      * @return bool
      */
@@ -84,6 +93,7 @@ class UserRepository
     }
 
     /**
+     * Gets all User records from the database
      * @return array
      */
     public function getAll()
@@ -104,6 +114,7 @@ class UserRepository
     }
 
     /**
+     * Gets a single User record from the database using the provided 'id'
      * @param $id
      * @return \Phizzle\User|null
      */
@@ -123,6 +134,7 @@ class UserRepository
     }
 
     /**
+     * Gets a single User record from the database using the provided 'username'
      * @param $username
      * @return \Phizzle\User|null
      */
@@ -142,6 +154,7 @@ class UserRepository
     }
 
     /**
+     * Gets all records from the database with 'username' or 'email' that match the provided text
      * @param $searchText
      * @return array
      */
@@ -164,9 +177,11 @@ class UserRepository
     }
 
     /**
-     * @param $username
-     * @param $password
-     * @return bool
+     * Checks the database for the provided 'username' and 'password' combination
+     * @param string $username
+     * @param string $password
+     *
+     * @return int|bool
      */
     public function canFindMatchingUsernameAndPassword($username, $password)
     {
@@ -183,4 +198,33 @@ class UserRepository
         // return whether or not hash of input password matched stored hash
         return password_verify($password, $hashedStoredPassword);
     }
+
+    /**
+     * Checks the database for the provided 'username' and 'role' combination
+     * @param string $username
+     * @param int $role
+     * @return bool
+     */
+    public function canFindUsernameWithAdminRole($username, $role)
+    {
+
+        // The Admin role is defined as 2
+        $admin_role = 2;
+
+        // If the provided role is not that of Admin then return FALSE
+        if ($role <> $admin_role) {
+            return false;
+        }
+
+        $user = $this->getOneByUsername($username);
+
+        // If no record has this username, return FALSE
+        if (null == $user) {
+            return false;
+        }
+
+        // Return whether or not the provided User has the Role of Admin
+        return ( ($admin_role == $user->getRole()) ? true : false );
+    }
+
 }

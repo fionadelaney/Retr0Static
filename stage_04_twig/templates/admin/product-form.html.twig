@@ -1,0 +1,35 @@
+{% extends 'admin/_adminBase.html.twig' %}
+
+{% if not product.id %}
+    {% set form_title = 'Add Product' %}
+    {% set form_action = 'create' %}
+{% else %}
+    {% set form_title = 'Update Product' %}
+    {% set form_action = 'update' %}
+{% endif %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}{{ form_title }}{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+    <div class="container">
+        <div class="form">
+            <h1>{{ form_title }}</h1>
+            <form method="post" action="?admin/product/{{ form_action }}">
+                <input type="hidden" name="id" value="{{ product.id }}" />
+                <p><input type="text" name="title" id="title" size="30" maxlength="24" value="{{ product.getTitle }}" placeholder="Title" required /></p>
+                <p><select name="developer_id" id="developer_id"><option value="">Select a Developer</option>{{ developer_list(product.getDeveloperId) }}</select></p>
+                <p><input type="text" name="product_id" id="product_id" size="30" maxlength="24" value="{{ product.getProductId }}" placeholder="Product ID" required /></p>
+                <p><input type="text" name="platform" id="platform" size="30" maxlength="24" value="{{ product.getPlatform }}" placeholder="Platform" required /></p>
+                <p><input type="text" name="released" id="released" size="30" maxlength="4" value="{{ product.getReleased }}" placeholder="Release Year" required /></p>
+                <p><input type="text" name="price" id="price" size="30" maxlength="9" value="{{ product.getPrice }}" placeholder="Price" required /></p>
+                <p><input type="text" name="screen" id="screen" size="30" maxlength="255" value="{{ product.getScreen }}" placeholder="Screen shot URL" required /></p>
+                <p><textarea name="description" id="description" cols="30" rows="5" placeholder="Description" required >{{ product.getDescription }}</textarea></p>
+                <p><input type="submit" value="Save"></p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

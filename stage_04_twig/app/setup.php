@@ -15,6 +15,7 @@ require_once __DIR__ . '/config_db.php';
 define('TEMPLATE_PATH', APP_PATH . '/templates' );
 
 use Phizzle\MainController;
+use Phizzle\DeveloperRepository;
 
 //----------------- Twig setup ----------------------------
 $loader = new Twig_Loader_Filesystem( TEMPLATE_PATH );
@@ -22,7 +23,7 @@ $loader = new Twig_Loader_Filesystem( TEMPLATE_PATH );
 $twig = new Twig_Environment($loader);
 
 $action_url_function = new Twig_SimpleFunction('action_url', function ($action) {
-    $base_url = 'index.php';
+    $base_url = '/';
     switch ($action) {
         case 'login' :
         case 'logout' :
@@ -32,7 +33,7 @@ $action_url_function = new Twig_SimpleFunction('action_url', function ($action) 
         case 'screen' :
         case 'shop' :
         case 'sitemap' :
-            $link_url = $base_url . '?action=' . $action;
+            $link_url = $base_url . '?' . $action;
             break;
         default:
             $link_url = $base_url;
@@ -41,14 +42,21 @@ $action_url_function = new Twig_SimpleFunction('action_url', function ($action) 
 });
 $twig->addFunction($action_url_function);
 
+$developer_list_function = new Twig_SimpleFunction('developer_list', function ($providedId) {
 
-function staticCall($class, $function, $args = array())
-{
-    if (class_exists($class) && method_exists($class, $function))
-        return call_user_func_array(array($class, $function), $args);
-    return null;
-}
-$twig->addFunction('staticCall', new Twig_Function_Function('staticCall'));
+    $db = new DeveloperRepository;
+    $developer_list = $db->getAll();
+    $htmlBlock = '';
+
+    foreach ($developer_list as $developer) {
+        $selected = ($providedId == $developer->getId()) ? ' selected' : '';
+        $htmlBlock .= '<option value="'. $developer->getId() .'"'. $selected .'>'.$developer->getName().'</option>';
+    }
+
+    echo $htmlBlock;
+});
+$twig->addFunction($developer_list_function);
+
 
 //create an instance of MainController class for use in index.php
 $mainController = new MainController();

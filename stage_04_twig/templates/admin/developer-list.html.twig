@@ -14,13 +14,13 @@
                 <tr>
                     <th> Developer </th>
                     <th> &nbsp; </th>
-                    <th> <a href="/index.php?admin/developer/create" title="New Developer" class="btn btn-new">New</a> </th>
+                    <th> <a href="/?admin/developer/create" title="New Developer" class="btn btn-new">New</a> </th>
                 </tr>
                 {% for item in developer_list %}
                     <tr>
                         <td>{{ item.name }}</td>
-                        <td><a href="/index.php?admin/developer/update/{{ item.id }}" title="Update" class="btn btn-update">Update</a></td>
-                        <td><a href="/index.php?admin/developer/delete/{{ item.id }}" title="Delete" class="btn btn-delete">Delete</a></td>
+                        <td><a href="/?admin/developer/update/{{ item.id }}" title="Update" class="btn btn-update">Update</a></td>
+                        <td><a href="/?admin/developer/delete/{{ item.id }}" title="Delete" class="btn btn-delete">Delete</a></td>
                     </tr>
                 {% endfor %}
             </table>

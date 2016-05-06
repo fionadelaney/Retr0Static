@@ -1,38 +1,49 @@
 <?php
+/**
+ * Developer.php
+ */
 
 namespace Phizzle;
 
 /**
  * Class Developer
+ *
  * @package Phizzle
  */
 class Developer
 {
+    
     /**
      * The object's unique ID in the database
+     *
      * @var int
      */
     private $id;
 
     /**
      * The name of the developer
+     *
      * @var string
      */
     private $name;
 
     /**
      * The developer's website url
+     *
      * @var string
      */
     private $url;
 
     /**
      * A description of the developer
+     *
      * @var string
      */
     private $description;
 
     /**
+     * Gets the 'id' of the Developer object
+     *
      * @return int
      */
     public function getId()
@@ -41,6 +52,8 @@ class Developer
     }
 
     /**
+     * Gets the name of the Developer
+     *
      * @return string
      */
     public function getName()
@@ -49,7 +62,9 @@ class Developer
     }
 
     /**
-     * @param $name
+     * Sets the name of the Developer
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -57,6 +72,8 @@ class Developer
     }
 
     /**
+     * Gets the URL of the Developer website
+     *
      * @return string
      */
     public function getUrl()
@@ -65,7 +82,9 @@ class Developer
     }
 
     /**
-     * @param $url
+     * Sets the URL of the Developer website
+     *
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -73,6 +92,8 @@ class Developer
     }
 
     /**
+     * Gets the description of the Developer.
+     *
      * @return string
      */
     public function getDescription()
@@ -81,7 +102,9 @@ class Developer
     }
 
     /**
-     * @param $description
+     * Sets the description of the Developer
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {

@@ -3,7 +3,6 @@ namespace Phizzle;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\FirePHPHandler;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 
 $parent_directory = dirname( dirname(__FILE__) );
@@ -29,13 +28,13 @@ class MainController
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-
             // search for user with username in repository
             $userDb = new UserRepository();
 
             $isLoggedIn = $userDb->canFindMatchingUsernameAndPassword($username, $password);
 
             if ($isLoggedIn) {
+
                 $user = $userDb->getOnebyUsername($username);
                 //STORE login status SESSION
                 $_SESSION['user'] = $username;
@@ -49,38 +48,33 @@ class MainController
 
             } else {
 
-                $htmlOutput = $twig->render('message.html.twig');
-                print $htmlOutput;
+                print $twig->render('message.html.twig');
 
             }
-
 
         }
         else {
 
-            $isLoggedIn = $this->isLoggedInFromSession();
-            $data = [];
+            $data = array( 'page_title' => 'Login' );
 
-            if ($isLoggedIn) {
-                $data['username'] = $this->usernameFromSession();
+            if ( Utility::isLoggedInFromSession() ) {
+                $data['username'] = Utility::usernameFromSession();
             }
 
-            $data['page_title'] = 'Login';
-
-            $template = 'login';
-            $htmlOutput = $twig->render($template . '.html.twig', $data);
-            print $htmlOutput;
+            print $twig->render('login.html.twig', $data);
 
         }
 
     }
 
-    public function logoutAction() // \Twig_Environment $twig
+    public function logoutAction()
     {
-        $isLoggedIn = $this->isLoggedInFromSession();
-        if ($isLoggedIn) {
+
+        if ( Utility::isLoggedInFromSession() ) {
             // ensure there is a session
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
             // end the session
             session_destroy();
             // redirect to home page
@@ -96,7 +90,8 @@ class MainController
         $logger->pushHandler(new StreamHandler(__DIR__.'/../my_app.log', Logger::DEBUG));
         $logger->pushHandler(new FirePHPHandler());
 
-        $logger->addInfo('Registration logger is now ready.');
+        $logger->
+        $logger->addInfo('Registration logger is now ready.', array( 'user' => 'Joe'));
 
         // Check that this is a POST request
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -157,69 +152,36 @@ class MainController
 
             $data = array( 'page_title' => 'Register' );
 
-            $isLoggedIn = $this->isLoggedInFromSession();
-
-            if ($isLoggedIn) {
+            if ( Utility::isLoggedInFromSession() ) {
                 // ensure there is a session
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 // end the session
                 session_destroy();
             }
 
-            $htmlOutput = $twig->render('register.html.twig', $data);
-            print $htmlOutput;
+            print $twig->render('register.html.twig', $data);
 
         }
 
-
-    }
-
-    /**
-     * Check if user is logged in
-     * @return bool Returns true if 'user' variable is found in session
-     */
-    public function isLoggedInFromSession() {
-        $isLoggedIn = false;
-
-        // user is logged in if there is a 'user' entry in the SESSION superglobal
-        if (isset($_SESSION['user'])) {
-            $isLoggedIn = true;
-        }
-        return $isLoggedIn;
-    }
-
-    public function usernameFromSession() {
-        $username = '';
-        // extract username from SESSION superglobal
-        if (isset($_SESSION['user'])) {
-            $username = $_SESSION['user'];
-        }
-
-        return $username;
-    }
-
-    function doLoginRedirect() {
-        // set session variable for redirect
-        $_SESSION['redirect'] = $_SERVER['REQUEST_URI']; // e.g. /index.php?action=screen
-        // go to login page
-        header("HTTP/1.1 403 Unauthorised");
-        header("Location: " . "index.php?action=login");
-        exit();
     }
 
     public function screenAction(\Twig_Environment $twig)
     {
-        $data = array( 'page_title' => 'Screen' );
-        $isLoggedIn = $this->isLoggedInFromSession();
 
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
-            $data['isAdmin'] = Utility::isUserAuthorised();
-            $data['watch_list'] = $this->screenListingAction();
+        if ( Utility::isLoggedInFromSession() ) {
+            $data = array(
+                'page_title' => 'Screen',
+                'active_page' => 'screen',
+                'username' => Utility::usernameFromSession(),
+                'isAdmin' => Utility::isUserAuthorised(),
+                'watch_list' => $this->screenListingAction()
+            );
             print $twig->render('screen.html.twig', $data);
         }
         else {
-            $this->doLoginRedirect();
+            Utility::doLoginRedirect();
         }
 
     }
@@ -256,74 +218,93 @@ class MainController
     public function newsAction(\Twig_Environment $twig)
     {
 
-        $data = array( 'page_title' => 'News' );
-        $isLoggedIn = $this->isLoggedInFromSession();
+        $rss = new \DOMDocument();
+        $rss->load('http://feeds.feedburner.com/GamasutraNews');
+        $feed = array();
+        foreach ($rss->getElementsByTagName('item') as $node) {
 
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
-            $data['isAdmin'] = Utility::isUserAuthorised();
-            $template = 'news';
-            $htmlOutput = $twig->render($template . '.html.twig', $data);
-            print $htmlOutput;
+            $content = $node->getElementsByTagName('description')->item(0)->nodeValue;
+            $dom = new \DOMDocument();
+            @$dom->loadHTML($content);
+
+            $images = $dom->getElementsByTagName('img');
+
+            $text = preg_replace("/<img[^>]+\>/i", "", $node->getElementsByTagName('description')->item(0)->nodeValue);
+
+            $item = array (
+                'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                'image' => $images[0]->attributes['src']->nodeValue,
+                'text' => $text,
+                'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                'date' => date('l F d, Y', strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue))
+            );
+            array_push($feed, $item);
+        }
+
+        if ( Utility::isLoggedInFromSession() ) {
+            $data = array(
+                'page_title' => 'News',
+                'active_page' => 'news',
+                'username' => Utility::usernameFromSession(),
+                'isAdmin' => Utility::isUserAuthorised(),
+                'feed' => $feed
+            );
+            print $twig->render('news.html.twig', $data);
         }
         else {
-            $this->doLoginRedirect();
+            Utility::doLoginRedirect();
         }
 
     }
 
     public function insightAction(\Twig_Environment $twig)
     {
-        $data = array( 'page_title' => 'Insight' );
-        $isLoggedIn = $this->isLoggedInFromSession();
 
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
-            $data['isAdmin'] = Utility::isUserAuthorised();
-            $template = 'insight';
-            $htmlOutput = $twig->render($template . '.html.twig', $data);
-            print $htmlOutput;
+        if ( Utility::isLoggedInFromSession() ) {
+            $data = array(
+                'page_title' => 'Insight',
+                'active_page' => 'insight',
+                'username' => Utility::usernameFromSession(),
+                'isAdmin' => Utility::isUserAuthorised()
+            );
+            print $twig->render('insight.html.twig', $data);
         }
         else {
-            $this->doLoginRedirect();
+            Utility::doLoginRedirect();
         }
 
     }
 
     public function indexAction(\Twig_Environment $twig)
     {
-        $template = 'home';
+
         $data = array( 'page_title' => 'Home' );
 
-        $isLoggedIn = $this->isLoggedInFromSession();
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
+        if ( Utility::isLoggedInFromSession() ) {
+            $data['username'] = Utility::usernameFromSession();
             $data['isAdmin'] = Utility::isUserAuthorised();
         }
 
-        $htmlOutput = $twig->render($template . '.html.twig', $data);
-        print $htmlOutput;
+        print $twig->render('home.html.twig', $data);
+
     }
 
     public function shopAction(\Twig_Environment $twig)
     {
 
-        $template = 'shop';
-        $data = array( 'page_title' => 'Shop' );
-
-        $isLoggedIn = $this->isLoggedInFromSession();
-
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
-            $data['game_list'] = $this->shopListingAction();
-            $data['isAdmin'] = Utility::isUserAuthorised();
+        if ( Utility::isLoggedInFromSession() ) {
+            $data = array(
+                'page_title' => 'Shop',
+                'active_page' => 'shop',
+                'username' => Utility::usernameFromSession(),
+                'game_list' => $this->shopListingAction(),
+                'isAdmin' => Utility::isUserAuthorised()
+            );
+            print $twig->render('shop.html.twig', $data);
         }
         else {
-            $this->doLoginRedirect();
+            Utility::doLoginRedirect();
         }
-
-        $htmlOutput = $twig->render($template . '.html.twig', $data);
-        print $htmlOutput;
 
     }
 
@@ -372,49 +353,17 @@ class MainController
     public function sitemapAction(\Twig_Environment $twig)
     {
 
-        $data = array( 'page_title' => 'Sitemap' );
+        $data = array(
+            'page_title' => 'Sitemap',
+            'active_page' => 'sitemap',
+        );
 
-        $isLoggedIn = $this->isLoggedInFromSession();
-
-        if ($isLoggedIn) {
-            $data['username'] = $this->usernameFromSession();
+        if ( Utility::isLoggedInFromSession() ) {
+            $data['username'] = Utility::usernameFromSession();
             $data['isAdmin'] = Utility::isUserAuthorised();
         }
 
-        $template = 'sitemap';
-        $htmlOutput = $twig->render($template . '.html.twig', $data);
-        print $htmlOutput;
-    }
-
-    public function generate_url($action)
-    {
-        $base_url = 'index.php';
-        switch ($action) {
-            case 'login' :
-            case 'logout' :
-            case 'register' :
-            case 'insight' :
-            case 'news' :
-            case 'screen' :
-            case 'shop' :
-            case 'sitemap' :
-                $link_url = $base_url . '?action=' . $action;
-                break;
-            default:
-                $link_url = $base_url;
-        }
-        return $link_url;
-
-    }
-
-    public function get_logout_panel()
-    {
-
-        $logout = '';
-        if ($this->isLoggedIn()) {
-            $logout = '<span id="logout">Logged in as: <strong><?= $username ?></strong> <a href="'. $this->generate_url('logout') .'">(logout)</a></span>';
-        }
-        return $logout;
+        print $twig->render('sitemap.html.twig', $data);
 
     }
 

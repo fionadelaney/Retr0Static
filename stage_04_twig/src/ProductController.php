@@ -1,0 +1,221 @@
+<?php
+/**
+ * ProductController.php
+ */
+
+namespace Phizzle;
+
+/**
+ * Class ProductController
+ * @package Phizzle
+ */
+class ProductController
+{
+    /**
+     * ProductController constructor.
+     * 
+     * @param \Twig_Environment $twig
+     * @param array $parameters
+     */
+    public function __construct(\Twig_Environment $twig, $parameters = array())
+    {
+
+        if (0 < count($parameters)) {
+
+            $action = array_shift($parameters);
+
+            switch (strtolower( filter_var($action, FILTER_SANITIZE_STRING) )) {
+                case 'create' :
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        // Process POST : Create new Product
+                        $this->createAction($twig);
+                    }
+                    else {
+                        // Render Create new Product form
+                        $product = new Product;
+                        $this->showFormAction($twig, $product);
+                    }
+                    break;
+                case 'update' :
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        // Process POST : Update Product
+                        $this->updateAction($twig);
+                    }
+                    else {
+                        $product_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
+                        $db = new ProductRepository;
+                        if (! $product = $db->getOneById($product_id) ) {
+                            // Delete the Product from the database
+                            $product = new Product;
+                            // Log the action
+                        }
+                        // Render Update Product form
+                        $this->showFormAction($twig, $product);
+                    }
+                    break;
+                case 'delete' :
+                    // Delete the Product
+                    $this->deleteAction($twig, $parameters);
+                    break;
+                default:
+                    // Display the Product
+                    $this->showAction($twig, $parameters);
+                    break;
+            }
+        }
+        else {
+            $this->indexAction($twig);
+        }
+    }
+
+    /**
+     * Display the list of Products using a twig template
+     *
+     * @param \Twig_Environment $twig
+     */
+    public function indexAction(\Twig_Environment $twig)
+    {
+        $data = array( 'username' => Utility::usernameFromSession() );
+        $db = new ProductRepository;
+        $data['product_list'] = $db->getAll();
+        print $twig->render('admin/product-list.html.twig', $data);
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     */
+    public function createAction(\Twig_Environment $twig)
+    {
+        if (! Utility::checkUserIsAuthorised()) {
+            Utility::doLoginRedirect();
+        }
+        else {
+
+            $product_id = null;
+            $product = new Product;
+            $db = new ProductRepository;
+
+            $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
+            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
+            $product->setReleased( filter_input(INPUT_POST, 'released', FILTER_SANITIZE_STRING) );
+            $product->setScreen( filter_input(INPUT_POST, 'screen', FILTER_SANITIZE_STRING) );
+            $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
+            $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
+            
+            $product_id = $db->create($product);
+
+            if (!$product_id) {
+                $this->showFormAction($twig, $product);
+            }
+            else {
+                $this->indexAction($twig);
+            }
+
+        }
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     */
+    public function updateAction(\Twig_Environment $twig)
+    {
+        if (! Utility::checkUserIsAuthorised()) {
+            Utility::doLoginRedirect();
+        }
+        else {
+
+            $product_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+            $db = new ProductRepository;
+
+            // get the Product object from the database
+            $product = $db->getOneById($product_id);
+
+            $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
+            $product->setDeveloperId( filter_input(INPUT_POST, 'developer_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
+            $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
+            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setReleased( filter_input(INPUT_POST, 'released', FILTER_SANITIZE_STRING) );
+            $product->setScreen( filter_input(INPUT_POST, 'screen', FILTER_SANITIZE_STRING) );
+            $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
+
+            $result = $db->update($product, $product_id);
+
+            if (! $result) {
+                $this->showFormAction($twig, $product);
+            }
+            else {
+                $this->indexAction($twig);
+            }
+
+        }
+    }
+
+    /**
+     * Deletes a Product
+     *
+     * @param \Twig_Environment $twig
+     * @param array             $param
+     */
+    public function deleteAction(\Twig_Environment $twig, $param = array())
+    {
+        if ( ! Utility::checkUserIsAuthorised() ) {
+            Utility::doLoginRedirect();
+        }
+        else {
+            // Get the 'id' of the Product object to be deleted
+            $product_id = filter_var( array_shift($param), FILTER_SANITIZE_NUMBER_INT );
+            // Check that a Product with that 'id' exists
+            $db = new ProductRepository;
+            if ( $product = $db->getOneById($product_id) ) {
+                // Delete the Product from the database
+                $db->delete( $product->getId() );
+                // Log the action
+            }
+            // Send User to Product listings
+            $this->indexAction($twig);
+        }
+    }
+
+    /**
+     * Displays the form to create/update a Product
+     *
+     * @param \Twig_Environment $twig
+     * @param Product         $product
+     */
+    public function showFormAction(\Twig_Environment $twig, Product $product)
+    {
+        $data = array(
+            'username' => Utility::usernameFromSession(),
+            'product' => $product
+        );
+
+        print $twig->render('admin/product-form.html.twig', $data);
+    }
+
+    /**
+     * Displays the Product details using a twig template
+     *
+     * @param \Twig_Environment $twig
+     * @param array             $param
+     */
+    public function showAction(\Twig_Environment $twig, $param = array())
+    {
+        $db = new ProductRepository;
+
+        // Get the 'id' of the Product object to display
+        $product_id = filter_var( array_shift($param), FILTER_SANITIZE_NUMBER_INT );
+
+        // Populate the data array
+        $data = array(
+            'username' => Utility::usernameFromSession(),
+            'product' => $db->getOneById($product_id)
+        );
+
+        // Show Product
+        print $twig->render('product.html.twig', $data);
+    }
+
+}

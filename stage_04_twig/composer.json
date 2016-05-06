@@ -14,6 +14,8 @@
     "phpdocumentor/phpdocumentor": "^2.8",
     "php-console/php-console": "^3.1",
     "monolog/monolog": "^1.19",
-    "doctrine/annotations": "^1.2.5"
+    "doctrine/annotations": "^1.2.5",
+    "sebastian/phpcpd": "*",
+    "squizlabs/php_codesniffer": "*"
   }
 }

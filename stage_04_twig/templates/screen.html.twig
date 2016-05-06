@@ -15,46 +15,37 @@
 <li>  <a href="http://www.codemystics.com/halo2600/" class="button" target="_blank">CodeMystics.com</a></li>
 <li>  <a href="http://www.mobygames.com/" class="button" target="_blank">MobyGames.com</a></li>
 <li>  <a href="https://www.youtube.com/playlist?list=PL501D683369AB6E48" class="button" target="_blank">dkidluke-YouTube</a></li>
-
 </ul>
 </div>
 
 <div id="section_screen">
-    <table border = "0px">
 
-        <tr>
-        <td><a href="https://www.youtube.com/watch?v=iScHVPjP1jU" class="video_link" target="blank"><img src="/images/246bioshock.jpg" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=CoYorK3E4aM" class="video_link" target="blank"><img src="/images/bioshock_ss.jpg" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=Z8EA7EbFX4k" class="video_link" target="blank"><img src="/images/prince.JPG" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=Be6HXPBRwoQ" class="video_link" target="blank"><img src="/images/chili.jpg" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=n8UOEt0-WqU&ebc=ANyPxKqJJ_png__4Fd8DBWajf_QtlCyUY_w-UDD6KAegELP26Eqfjj5qlU0QGm5X482pxeyEhk2qh83Yu8R7Zjsfn-EHTv6rgw" class="video_link" target="_blank"><img src="/images/reality_2.png" width="100%" height="auto"></a></td>
+    <h1>Watch...</h1>
 
-        </tr>
-
-        <th><h3>Playthrough</h3></th>
-        <th><h3> Trailers </h3></th>
-        <th><h3>  Movies  </h3></th>
-        <th><h3>Playthrough</h3></th>
-        <th><h3>Sims2 TV dkidluke</h3></th>
-
-        <tr>
-        <td><a href="https://www.youtube.com/watch?v=Qd_x-S7IpHA" class="video_link" target="_blank"><img src="/images/mountain.png" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=LhFeyJ00fdo" class="video_link" target="_blank"><img src="/images/Chili_Con_Carnage.jpg" width="100%" height="auto"></a></td>
-        <td><a href="http://www.davidoreilly.com/projects/her/" class="video_link" target="blank"><img src="/images/her2.jpg" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=QHHzMLL8ERs" class="video_link" target="blank"><img src="/images/baldursgate_ss.png" width="100%" height="auto"></a></td>
-        <td><a href="https://www.youtube.com/watch?v=cKpKv8lGG9o" class="video_link" target="_blank"><img src="/images/reality_1.png" width="100%" height="auto"></a></td>
-
-        </tr>
-
-<caption><h1>Watch...</h1></caption>
-
+    <table>
+        {% set headings = [ 'Playthrough', 'Trailers', 'Movies', 'Playthrough', 'Sims2 TV dkidluke' ] %}
+        {% set columns = 2 %}
+        {% set myCol = 0 %}
         {% for video in watch_list %}
-        <tr>
-            <td><a href="{{ video.getVideoUrl }}" target="blank"><img src="/images/{{ video.getGameScreen }}" alt="{{ video.getGameTitle }} screen" width="100%" height="auto" /></a></td>
-            <td><a href="{{ video.getVideoUrl }}" target="blank">{{ video.getGameTitle }}</a></td>
-        </tr>
+            {% if loop.first or loop.index0 is divisibleby(columns) %}
+                <tr>
+            {% endif %}
+            <td style="width:150px;"><a href="{{ video.getVideoUrl }}" class="video_link" target="blank"  title="{{ video.getGameTitle }}" ><img src="/images/{{ video.getGameScreen }}" title="{{ video.getGameTitle }} screen" width="100%" height="auto"></a></td>
+            {% if loop.first or loop.index0 is divisibleby(columns) %}
+                <th style="width:250px; text-align: center;"><h3>{{ headings[myCol] }}</h3></th>
+                {% set myCol = myCol + 1 %}
+            {% endif %}
+          {% if loop.last and loop.index is not divisibleby(columns) %}
+                {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                    <td>&nbsp;</td>
+                {% endfor %}
+            {% endif %}
+            {% if loop.last or loop.index is divisibleby(columns) %}
+                </tr>
+            {% endif %}
         {% endfor %}
     </table>
+
 </div>
 
 <div id="main_screen">

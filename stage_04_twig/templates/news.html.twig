@@ -5,45 +5,34 @@
 
 {# ------------------------------------------------- #}
 {% block main %}
-
-
     <div id="aside">
-Text<br>
-Text<br>
+    </div>
 
-<br>
-</div>
-
-<div id="section">
-<h1> MAIN CONTENT OF SITE</h1>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
-
-<p>
-Pellentesque eleifend turpis id dolor auctor, nec facilisis ex rhoncus. 
-</p>
-</div>
-
-<div id="main">
-<h4>More Content</h4>
-<p>Phasellus tristique placerat convallis. Donec suscipit pretium arcu, quis pulvinar metus blandit eu.
-
-</p>
-<p>
-Article <br>
-Article <br>
-
-</p>
-</div>
-
-<div id="article">
-<h4>Head</h4>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-<img src="socks1.png" alt="Buddy System" width="200" height="200">
-</p>
-</div>
+    <div id="news-section">
+        <h1>What's in the News?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <table>
+            {% set columns = 3 %}
+            {% for item in feed %}
+                {% if loop.first or loop.index0 is divisibleby(columns) %}
+                    <tr>
+                {% endif %}
+                <td style="width:300px;">
+                    <a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" width="120" height="120" alt="{{ item.title }}" />
+                        <h2>{{ item.title }}</h2>
+                        <h3>Gamasutra.com, {{ item.date }}</h3>
+                        <p>{{ item.text|raw }}</p></a>
+                </td>
+                {% if loop.last and loop.index is not divisibleby(columns) %}
+                    {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                        <td>&nbsp;</td>
+                    {% endfor %}
+                {% endif %}
+                {% if loop.last or loop.index is divisibleby(columns) %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}

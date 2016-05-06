@@ -1,4 +1,7 @@
 <?php
+/**
+ * Utility.php
+ */
 
 namespace Phizzle;
 
@@ -55,26 +58,38 @@ class Utility
         $_SESSION['redirect'] = $_SERVER['REQUEST_URI']; // e.g. /index.php?action=screen
         // Go to login page
         header("HTTP/1.1 403 Unauthorised");
-        header("Location: " . "index.php?action=login");
+        header("Location: " . "/?login");
         exit();
 
     }
 
+    /**
+     * Uses the 'username' and 'role' variables in SESSION to determine if the user is an authorised admin
+     * @return bool
+     */
     public static function isUserAuthorised() {
+
         $authorised = false;
-        // User is set in session so we need to check their role
+
+        // User and Role are set in the SESSION super global
         $username = $_SESSION['user'];
         $role = $_SESSION['role'];
+
         $db = new \Phizzle\UserRepository;
+
         if ($db->canFindUsernameWithAdminRole($username, $role)) {
             $authorised = true;
         }
+
         return $authorised;
+
     }
 
+    /**
+     * Redirects to login screen if User is not logged in. Otherwise checks if the User is an authorised admin.
+     * @return bool
+     */
     public static function checkUserIsAuthorised() {
-
-        $authorised = false;
 
         if (! self::isLoggedInFromSession()) {
             // User is not logged in!
@@ -82,11 +97,8 @@ class Utility
             header("Location: " . "/index.php");
             exit();
         }
-        else {
-            $authorised = self::isUserAuthorised();
-        }
 
-        return $authorised;
+        return self::isUserAuthorised();
 
     }
 }
