@@ -14,7 +14,7 @@ $logger = new Logger('name');
 $logger->pushHandler(new StreamHandler(__DIR__.'/../my_app.log', Logger::DEBUG));
 $logger->pushHandler(new FirePHPHandler());
 
-// For URL http://localhost:8080/index.php?admin/developer/view/123
+// For URL http://localhost:8080/?admin/developer/view/123
 $urlStr =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 // urlStr = //localhost/?admin/developer/view/123
 $urlQuery = parse_url( $urlStr , PHP_URL_QUERY );
@@ -39,6 +39,9 @@ if (count($urlPieces) > 0) {
             break;
         case 'register' :
             $mainController->registerAction($twig);
+            break;
+        case 'developer' :
+            $mainController->developerAction($twig, $urlPieces);
             break;
         case 'insight' :
             $mainController->insightAction($twig);
