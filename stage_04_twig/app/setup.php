@@ -57,6 +57,21 @@ $developer_list_function = new Twig_SimpleFunction('developer_list', function ($
 });
 $twig->addFunction($developer_list_function);
 
+$developer_link_function = new Twig_SimpleFunction('developer_link', function ($providedId) {
+
+    $db = new DeveloperRepository;
+    $developer_id = filter_var($providedId, FILTER_SANITIZE_NUMBER_INT);
+    $developer = $db->getOneById($developer_id);
+    $link = '';
+
+    if ($developer) {
+        $link .= '<a href="/?developer/'. $developer->getId() .'">'.$developer->getName().'</a>';
+    }
+
+    echo $link;
+});
+$twig->addFunction($developer_link_function);
+
 
 //create an instance of MainController class for use in index.php
 $mainController = new MainController();

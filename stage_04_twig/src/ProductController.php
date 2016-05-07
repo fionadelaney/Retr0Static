@@ -95,14 +95,15 @@ class ProductController
             $product = new Product;
             $db = new ProductRepository;
 
-            $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
-            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
+            $product->setDeveloperId( filter_input(INPUT_POST, 'developer_id', FILTER_SANITIZE_NUMBER_INT) );
             $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
+            $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
+            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
             $product->setReleased( filter_input(INPUT_POST, 'released', FILTER_SANITIZE_STRING) );
             $product->setScreen( filter_input(INPUT_POST, 'screen', FILTER_SANITIZE_STRING) );
-            $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
-            $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
-            
+            $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
+
             $product_id = $db->create($product);
 
             if (!$product_id) {
@@ -133,7 +134,6 @@ class ProductController
             $product = $db->getOneById($product_id);
 
             $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
-            $product->setDeveloperId( filter_input(INPUT_POST, 'developer_id', FILTER_SANITIZE_NUMBER_INT) );
             $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
             $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
             $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );

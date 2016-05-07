@@ -6,13 +6,34 @@
 {# ------------------------------------------------- #}
 {% block main %}
 
-<div id="main">
-<h1>{{ developer.name }}</h1>
-<p>
-Website: <a href="{{ developer.url }}" title="{{ developer.name }}">{{ developer.url }}</a>
-</p>
+    <div id="section_shop">
+        <h1>{{ developer.name }}</h1>
+        <p>{{ developer.description|raw }}</p>
+        <p>Website: <a href="{{ developer.url }}" title="{{ developer.name }}">{{ developer.url }}</a></p>
 
-<p>{{ developer.description }}</p>
-</div>
+        {% if game_list %}
+            <h2>Games by this Developer</h2>
+
+            <table>
+                <tr>
+                    <th> Title </th>
+                    <th> Platform </th>
+                    <th> Year </th>
+                    <th> Screen </th>
+                    <th> Description </th>
+                </tr>
+                {% for item in game_list %}
+                    <tr>
+                        <td>{{ item.getTitle|raw }}</td>
+                        <td>{{ item.getPlatform }}</td>
+                        <td>{% if item.getReleased %}{{ item.getReleased }}{%  else %}&nbsp;{% endif %}</td>
+                        <td><img src="/images/{{ item.getScreen }}" alt="{{ item.getTitle }} screen" title="{{ item.getTitle }} screen" width="100%" height="auto" /></td>
+                        <td>{{ item.getDescription|raw }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+            {% endif %}
+    </div>
 
 {% endblock %}

@@ -8,8 +8,8 @@ use Mattsmithdev\PdoCrud\DatabaseTable;
 $parent_directory = dirname( dirname(__FILE__) );
 define('TEMPLATE_DIRECTORY', $parent_directory . '/templates');
 
-require_once __DIR__ . '/game.php';
-require_once __DIR__ . '/watch.php';
+//require_once __DIR__ . '/game.php';
+//require_once __DIR__ . '/watch.php';
 
 class MainController
 {
@@ -88,67 +88,60 @@ class MainController
         // create a log channel
         $logger = new Logger('name');
         $logger->pushHandler(new StreamHandler(__DIR__.'/../my_app.log', Logger::DEBUG));
-        $logger->pushHandler(new FirePHPHandler());
-
-        $logger->
-        $logger->addInfo('Registration logger is now ready.', array( 'user' => 'Joe'));
 
         // Check that this is a POST request
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // If the POST variable 'register' exists (the form submit button),
             // we can assume that the user has submitted the registration form.
             $logger->addInfo('A form was posted.');
-            
-                $logger->addInfo('We have a registration form.');
 
-                $validation_rules = array(
-                    'username' => array( 'type' => 'string', 'required' => true, 'min' => 3, 'max' => 50, 'trim' => true ),
-                    'email' => array( 'type' => 'email', 'required' => true, 'trim' => true ),
-                    'firstname' => array( 'type' => 'string', 'required' => true, 'min' => 1, 'max' => 50, 'trim' => true ),
-                    'lastname' => array( 'type' => 'string', 'required' => true, 'min' => 2, 'max' => 50, 'trim' => true ),
-                    'password' => array( 'type' => 'string', 'required' => true, 'min' => 8, 'max' => 50, 'trim' => true )
-                );
+            $logger->addInfo('We have a registration form.');
 
-                $validate = new validation;
-                $validate->addRules($validation_rules);
-                $validate->addSource($_POST);
-                $validate->run();
+            $validation_rules = array(
+                'username' => array( 'type' => 'string', 'required' => true, 'min' => 3, 'max' => 50, 'trim' => true ),
+                'email' => array( 'type' => 'email', 'required' => true, 'trim' => true ),
+                'firstname' => array( 'type' => 'string', 'required' => true, 'min' => 1, 'max' => 50, 'trim' => true ),
+                'lastname' => array( 'type' => 'string', 'required' => true, 'min' => 2, 'max' => 50, 'trim' => true ),
+                'password' => array( 'type' => 'string', 'required' => true, 'min' => 8, 'max' => 50, 'trim' => true )
+            );
 
-                if (sizeof($validate->errors) > 0) {
-                    print_r($validate->errors);
-                }
-                else {
-                    // create a new User object
-                    $newSignup = new User;
-                    // populate the User properties
-                    $newSignup->setUsername( $validate->sanitized['username'] );
-                    $newSignup->setFirstname( $validate->sanitized['firstname'] );
-                    $newSignup->setLastname( $validate->sanitized['lastname'] );
-                    $newSignup->setEmail( $validate->sanitized['email'] );
-                    $newSignup->setPassword( $validate->sanitized['password'] );
-                    // assign User role
-                    $newSignup->setRole( 1 );
-                    // save User to database
-                    $id = UserRepository::create($newSignup);
-                    if ($id > -1) {
-                        // ensure there is a session
-                        if (session_status() == PHP_SESSION_NONE) {
-                            session_start();
-                        }
-                        // store the username in the session
-                        $_SESSION['user'] = $newSignup->getUsername();
-                        $_SESSION['role'] = $newSignup->getRole();
-                        // render the welcome template
-                        print $twig->render('thanks.html.twig', array( 'firstname' => $newSignup->getFirstname(), 'username' => $newSignup->getUsername() ));
+            $validate = new validation;
+            $validate->addRules($validation_rules);
+            $validate->addSource($_POST);
+            $validate->run();
+
+            if (sizeof($validate->errors) > 0) {
+                print_r($validate->errors);
+            } else {
+                // create a new User object
+                $newSignup = new User;
+                // populate the User properties
+                $newSignup->setUsername( $validate->sanitized['username'] );
+                $newSignup->setFirstname( $validate->sanitized['firstname'] );
+                $newSignup->setLastname( $validate->sanitized['lastname'] );
+                $newSignup->setEmail( $validate->sanitized['email'] );
+                $newSignup->setPassword( $validate->sanitized['password'] );
+                // assign User role
+                $newSignup->setRole( 1 );
+                // save User to database
+                $id = UserRepository::create($newSignup);
+                if ($id > -1) {
+                    // ensure there is a session
+                    if (session_status() == PHP_SESSION_NONE) {
+                        session_start();
                     }
-                    else {
-                        // database error
-                    }
-                    
+                    // store the username in the session
+                    $_SESSION['user'] = $newSignup->getUsername();
+                    $_SESSION['role'] = $newSignup->getRole();
+                    // render the welcome template
+                    print $twig->render('thanks.html.twig', array( 'firstname' => $newSignup->getFirstname(), 'username' => $newSignup->getUsername() ));
+                } else {
+                    // database error
                 }
 
-        }
-        else {
+            }
+
+        } else {
 
             $data = array( 'page_title' => 'Register' );
 
@@ -293,14 +286,53 @@ class MainController
     {
 
         if ( Utility::isLoggedInFromSession() ) {
+
+            $db = new ProductRepository;
+
             $data = array(
                 'page_title' => 'Shop',
                 'active_page' => 'shop',
                 'username' => Utility::usernameFromSession(),
-                'game_list' => $this->shopListingAction(),
+                'game_list' => $db->getAll(),
                 'isAdmin' => Utility::isUserAuthorised()
             );
             print $twig->render('shop.html.twig', $data);
+        }
+        else {
+            Utility::doLoginRedirect();
+        }
+
+    }
+
+    public function developerAction(\Twig_Environment $twig, $parameters=array())
+    {
+
+        if ( Utility::isLoggedInFromSession() ) {
+
+            $developer_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
+
+            $ddb = new DeveloperRepository;
+
+            if (! $developer = $ddb->getOneById($developer_id) ) {
+                // Developer does not exist
+                // Redirect to the Shop page
+                header("HTTP/1.1 404 Not Found");
+                header("Location: /?shop");
+                exit();
+            }
+
+            $pdb = new ProductRepository;
+
+            $data = array(
+                'page_title' => 'Developer',
+                'active_page' => 'shop',
+                'username' => Utility::usernameFromSession(),
+                'developer' => $developer,
+                'game_list' => $pdb->getAllByDeveloper($developer->getId()),
+                'isAdmin' => Utility::isUserAuthorised()
+            );
+
+            print $twig->render('developer.html.twig', $data);
         }
         else {
             Utility::doLoginRedirect();

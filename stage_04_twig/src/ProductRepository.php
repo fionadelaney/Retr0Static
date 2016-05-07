@@ -107,6 +107,28 @@ class ProductRepository
     }
 
     /**
+     * @param int $developerId
+     * @return array
+     */
+    public function getAllByDeveloper($developerId)
+    {
+        // get database connection
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        // execute the SELECT query
+        $statement = $connection->prepare('SELECT * FROM product WHERE developer_id=:developer_id');
+        $statement->bindParam(':developer_id', $developerId, \PDO::PARAM_INT);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, '\\Phizzle\\Product');
+        $statement->execute();
+
+        // get the result set rows
+        $developers = $statement->fetchAll();
+
+        return $developers;
+    }
+
+    /**
      * @param int $id
      * @return \Phizzle\Product|null
      */

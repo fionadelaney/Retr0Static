@@ -18,7 +18,7 @@
                 </tr>
                 {% for item in product_list %}
                     <tr>
-                        <td>{{ item.title }}</td>
+                        <td>{{ item.title }}{% if item.platform %} ({{ item.platform }}){% endif %}</td>
                         <td><a href="/?admin/product/update/{{ item.id }}" title="Update" class="btn btn-update">Update</a></td>
                         <td><a href="/?admin/product/delete/{{ item.id }}" title="Delete" class="btn btn-delete">Delete</a></td>
                     </tr>

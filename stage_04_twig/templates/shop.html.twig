@@ -29,13 +29,13 @@
             </tr>
             {% for item in game_list %}
                 <tr>
-                    <td>{{ item.getGameId() }}</td>
-                    <td>{{ item.getGameTitle() }}</td>
-                    <td>{{ item.getGamePlatform() }}</td>
-                    <td>{{ item.getGamePrice() }}</td>
-                    <td><img src="/images/{{ item.getGameScreen() }}" alt="{{ item.getGameTitle() }} screen" width="100%" height="auto" /></td>
-                    <td><a href="{{ item.getGameDevUrl() }}" target="blank">{{ item.getGameDev() }}</a></td>
-                    <td>{{  item.getGameDesc() }}</td>
+                    <td>{{ item.getProductId }}</td>
+                    <td>{{ item.getTitle|raw }}</td>
+                    <td>{{ item.getPlatform }}{% if item.getReleased %}<br/>({{ item.getReleased }}){% endif %}</td>
+                    <td>{% if item.getPrice %}&euro; {{ item.getPrice }}{% endif %}</td>
+                    <td><img src="/images/{{ item.getScreen }}" alt="{{ item.getTitle }} screen" title="{{ item.getTitle }} screen" width="100%" height="auto" /></td>
+                    <td>{% if item.getDeveloperId %}{{ developer_link(item.getDeveloperId) }}{% endif %}</td>
+                    <td>{{ item.getDescription }}</td>
                 </tr>
             {% endfor %}
 
