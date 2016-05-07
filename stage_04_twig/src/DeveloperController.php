@@ -72,7 +72,7 @@ class DeveloperController
         $db = new DeveloperRepository;
         $data = array(
         	'active_page' => 'admin/developer', 
-        	'username' => Utility::usernameFromSession() 
+        	'username' => Utility::usernameFromSession(),
             'developer_list' => $db->getAll()
         );
 

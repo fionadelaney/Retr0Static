@@ -58,7 +58,7 @@ nav a:hover {
 	background-color:#C9DBFF;
 	}
 
-nav a.current_page {
+nav li.active a {
 	border-radius: 20px;
 	border: 2px outset #cccccc;
 	padding: 8px 20px;

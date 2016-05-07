@@ -2,20 +2,18 @@
 
 namespace Phizzle\Test;
 
-// use autoloader to find the class to test
-require_once __DIR__ . '/../vendor/autoload.php';
-
 class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * Generate a fake User record with option to provide username and email values
+     * Generate a fake User record with option to provide username, email, password and role values
      * @param string $username
      * @param string $email
      * @param string $password
+     * @param int $role
      * @return int
      */
-    public function setupFakeUser($username = '', $email='', $password='')
+    public function setupFakeUser($username = '', $email='', $password='', $role=1)
     {
         // use the Faker\Factory to create a Faker\Generator instance
         $faker = \Faker\Factory::create();
@@ -29,7 +27,7 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
         $test_user->setEmail($email);
         $test_user->setFirstname($faker->firstName);
         $test_user->setLastname($faker->lastName);
-        $test_user->setRole(1);
+        $test_user->setRole($role);
         $set_result = $test_user->setPassword($password);
         // create User in database
         $db = new \Phizzle\UserRepository;
@@ -177,14 +175,51 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
         $originalPassword = 'testPassword';
         // empty the database table
         $this->setupEmptyUsersTable();
-        // add User with 'my_test_user' username
-        //$expectedId = $this->setupFakeUser($originalUsername, $originalEmail, $originalPassword);
-        // canFindMatchingUsernameAndPassword($username, $password)
         $db = new \Phizzle\UserRepository;
         $result = $db->canFindMatchingUsernameAndPassword($originalUsername, $originalPassword);
         // there should not be a matching User object in the database
         $this->assertFalse($result);
     }
 
+    public function testCannotFindUsernameWithInvalidRole()
+    {
+        // test expectations
+        $originalUsername = 'my_test_user';
+        $originalRole = 123;
+        // empty the database table
+        $this->setupEmptyUsersTable();
+        $db = new \Phizzle\UserRepository;
+        $result = $db->canFindUsernameWithAdminRole($originalUsername, $originalRole);
+        // the role is not that of Admin so the result should be FALSE
+        $this->assertFalse($result);
+    }
+
+    public function testCannotFindInvalidUsernameWithAdminRole()
+    {
+        // test expectations
+        $originalUsername = 'my_test_user';
+        $originalRole = 2;
+        // empty the database table
+        $this->setupEmptyUsersTable();
+        $db = new \Phizzle\UserRepository;
+        $result = $db->canFindUsernameWithAdminRole($originalUsername, $originalRole);
+        // the Username does not exist so the result should be FALSE
+        $this->assertFalse($result);
+    }
+
+    public function testCanFindUsernameWithAdminRole()
+    {
+        // test expectations
+        $originalUsername = 'my_test_user';
+        $originalRole = 2;
+        // empty the database table
+        $this->setupEmptyUsersTable();
+        // add User with 'my_test_user' username and Admin role
+        $expectedId = $this->setupFakeUser($originalUsername, '', '', $originalRole);
+        $db = new \Phizzle\UserRepository;
+        $result = $db->canFindUsernameWithAdminRole($originalUsername, $originalRole);
+        // the Username and role are correct so the result should be TRUE
+        $this->assertTrue($result);
+    }
 
 }

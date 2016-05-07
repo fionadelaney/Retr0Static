@@ -2,9 +2,6 @@
 
 namespace Phizzle\Test;
 
-// use autoloader to find the class to test
-require_once __DIR__ . '/../vendor/autoload.php';
-
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrueIsTrue()
@@ -151,7 +148,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
         // result should equal the expectation
         $this->assertEquals($result, $originalId);
         // delete user from the database
-        $db->delete($result);
+        $deleted = $db->delete($result);
+        // A single row should have been deleted from the database table
+        $this->assertEquals(1, $deleted);
     }
 
 }

@@ -59,7 +59,7 @@ class VideoController
         $data = array( 
                 'active_page' => 'admin/video',
         		'username' => Utility::usernameFromSession(),
-                'video_list' = $db->getAll()
+                'video_list' => $db->getAll()
         );
 
 
