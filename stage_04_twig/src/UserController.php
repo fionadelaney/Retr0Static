@@ -107,7 +107,8 @@ class UserController
                 $this->showFormAction($twig, $user);
             } else {
                 // User added to the database. Display the User list
-                $this->indexAction($twig);
+                header("Location: /?admin/user");
+                exit();
             }
 
         }
@@ -147,7 +148,8 @@ class UserController
                 $this->showFormAction($twig, $user);
             } else {
                 // Update was successful. Display the User list
-                $this->indexAction($twig);
+                header("Location: /?admin/user");
+                exit();
             }
 
         }
@@ -175,7 +177,8 @@ class UserController
                 $db->delete($user->getId());
             }
             // Return to the User listings
-            $this->indexAction($twig);
+            header("Location: /?admin/user");
+            exit();
         }
     }
 

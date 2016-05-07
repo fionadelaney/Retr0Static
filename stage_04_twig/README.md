@@ -27,6 +27,7 @@
 ...Unit Tests added for:
 ..*User class : 100% coverage
 ..*UserRepository class : 100% coverage
+..*cmd: phpunit from Retr0static/stage_0....
 
 4. Logging
 ...monolog/monolog added to composer.json

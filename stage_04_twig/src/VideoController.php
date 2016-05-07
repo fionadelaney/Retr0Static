@@ -18,8 +18,7 @@ class VideoController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Create new Video
                         $this->createAction($twig);
-                    }
-                    else {
+                    } else {
                         // Render Create new Video form
                         $video = new \Phizzle\Video;
                         $this->showFormAction($twig, $video);
@@ -29,8 +28,7 @@ class VideoController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Update Video
                         $this->updateAction($twig);
-                    }
-                    else {
+                    } else {
                         $video_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
                         $db = new \Phizzle\VideoRepository;
                         if (! $video = $db->getOneById($video_id) ) {
@@ -50,8 +48,7 @@ class VideoController
                     $this->showAction($twig, $parameters);
                     break;
             }
-        }
-        else {
+        } else {
             $this->indexAction($twig);
         }
     }
@@ -68,8 +65,7 @@ class VideoController
     {
         if ( ! Utility::checkUserIsAuthorised() ) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
 
             $video_id = null;
             $video = new \Phizzle\Video;
@@ -83,9 +79,9 @@ class VideoController
 
             if (!$video_id) {
                 $this->showFormAction($twig, $video);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                header("Location: /?admin/video");
+                exit();
             }
 
         }
@@ -95,8 +91,7 @@ class VideoController
     {
         if ( ! Utility::checkUserIsAuthorised() ) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
             $data = array( 'username' => Utility::usernameFromSession() );
 
             $video_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -115,9 +110,9 @@ class VideoController
 
             if (! $result) {
                 $this->showFormAction($twig, $video);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                header("Location: /?admin/video");
+                exit();
             }
 
         }
@@ -125,10 +120,9 @@ class VideoController
 
     public function deleteAction(\Twig_Environment $twig, $param = array())
     {
-        if ( ! Utility::checkUserIsAuthorised() ) {
+        if (! Utility::checkUserIsAuthorised() ) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
             // Get the 'id' of the Video object to be deleted
             $video_id = filter_var( array_shift($param), FILTER_SANITIZE_NUMBER_INT );
             // Check that a Video with that 'id' exists
@@ -139,7 +133,8 @@ class VideoController
                 // Log the action
             }
             // Send User to Video listings
-            $this->indexAction($twig);
+            header("Location: /?admin/video");
+            exit();
         }
     }
 

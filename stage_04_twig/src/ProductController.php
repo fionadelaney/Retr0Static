@@ -29,8 +29,7 @@ class ProductController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Create new Product
                         $this->createAction($twig);
-                    }
-                    else {
+                    } else {
                         // Render Create new Product form
                         $product = new Product;
                         $this->showFormAction($twig, $product);
@@ -40,8 +39,7 @@ class ProductController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Update Product
                         $this->updateAction($twig);
-                    }
-                    else {
+                    } else {
                         $product_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
                         $db = new ProductRepository;
                         if (! $product = $db->getOneById($product_id) ) {
@@ -62,8 +60,7 @@ class ProductController
                     $this->showAction($twig, $parameters);
                     break;
             }
-        }
-        else {
+        } else {
             $this->indexAction($twig);
         }
     }
@@ -88,8 +85,7 @@ class ProductController
     {
         if (! Utility::checkUserIsAuthorised()) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
 
             $product_id = null;
             $product = new Product;
@@ -99,7 +95,7 @@ class ProductController
             $product->setDeveloperId( filter_input(INPUT_POST, 'developer_id', FILTER_SANITIZE_NUMBER_INT) );
             $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
             $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
-            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_STRING) );
             $product->setReleased( filter_input(INPUT_POST, 'released', FILTER_SANITIZE_STRING) );
             $product->setScreen( filter_input(INPUT_POST, 'screen', FILTER_SANITIZE_STRING) );
             $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
@@ -108,9 +104,10 @@ class ProductController
 
             if (!$product_id) {
                 $this->showFormAction($twig, $product);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                // Redirect to index
+                header("Location: /?admin/product");
+                exit();
             }
 
         }
@@ -123,8 +120,7 @@ class ProductController
     {
         if (! Utility::checkUserIsAuthorised()) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
 
             $product_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
@@ -134,9 +130,10 @@ class ProductController
             $product = $db->getOneById($product_id);
 
             $product->setDescription( filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) );
+            $product->setDeveloperId( filter_input(INPUT_POST, 'developer_id', FILTER_SANITIZE_NUMBER_INT) );
             $product->setPlatform( filter_input(INPUT_POST, 'platform', FILTER_SANITIZE_STRING) );
             $product->setPrice( filter_input(INPUT_POST, 'price', FILTER_SANITIZE_STRING) );
-            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT) );
+            $product->setProductId( filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_STRING) );
             $product->setReleased( filter_input(INPUT_POST, 'released', FILTER_SANITIZE_STRING) );
             $product->setScreen( filter_input(INPUT_POST, 'screen', FILTER_SANITIZE_STRING) );
             $product->setTitle( filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) );
@@ -145,9 +142,10 @@ class ProductController
 
             if (! $result) {
                 $this->showFormAction($twig, $product);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                // Redirect to index
+                header("Location: /?admin/product");
+                exit();
             }
 
         }
@@ -163,8 +161,7 @@ class ProductController
     {
         if ( ! Utility::checkUserIsAuthorised() ) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
             // Get the 'id' of the Product object to be deleted
             $product_id = filter_var( array_shift($param), FILTER_SANITIZE_NUMBER_INT );
             // Check that a Product with that 'id' exists
@@ -175,7 +172,8 @@ class ProductController
                 // Log the action
             }
             // Send User to Product listings
-            $this->indexAction($twig);
+            header("Location: /?admin/product");
+            exit();
         }
     }
 

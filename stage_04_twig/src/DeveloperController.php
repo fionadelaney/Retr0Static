@@ -26,8 +26,7 @@ class DeveloperController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Create new Developer
                         $this->createAction($twig);
-                    }
-                    else {
+                    } else {
                         // Render Create new Developer form
                         $developer = new Developer;
                         $this->showFormAction($twig, $developer);
@@ -37,8 +36,7 @@ class DeveloperController
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         // Process POST : Update Developer
                         $this->updateAction($twig);
-                    }
-                    else {
+                    } else {
                         $developer_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
                         $db = new DeveloperRepository;
                         if (! $developer = $db->getOneById($developer_id) ) {
@@ -59,8 +57,7 @@ class DeveloperController
                     $this->showAction($twig, $parameters);
                     break;
             }
-        }
-        else {
+        } else {
             $this->indexAction($twig);
         }
     }
@@ -85,8 +82,7 @@ class DeveloperController
     {
         if (! Utility::checkUserIsAuthorised()) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
 
             $developer_id = null;
             $developer = new Developer;
@@ -99,9 +95,10 @@ class DeveloperController
 
             if (!$developer_id) {
                 $this->showFormAction($twig, $developer);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                // Redirect to index
+                header("Location: /?admin/developer");
+                exit();
             }
 
         }
@@ -114,8 +111,7 @@ class DeveloperController
     {
         if (! Utility::checkUserIsAuthorised()) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
 
             $developer_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
@@ -132,9 +128,9 @@ class DeveloperController
 
             if (! $result) {
                 $this->showFormAction($twig, $developer);
-            }
-            else {
-                $this->indexAction($twig);
+            } else {
+                header("Location: /?admin/developer");
+                exit();
             }
 
         }
@@ -150,8 +146,7 @@ class DeveloperController
     {
         if ( ! Utility::checkUserIsAuthorised() ) {
             Utility::doLoginRedirect();
-        }
-        else {
+        } else {
             // Get the 'id' of the Developer object to be deleted
             $developer_id = filter_var( array_shift($param), FILTER_SANITIZE_NUMBER_INT );
             // Check that a Developer with that 'id' exists
@@ -162,7 +157,8 @@ class DeveloperController
                 // Log the action
             }
             // Send User to Developer listings
-            $this->indexAction($twig);
+            header("Location: /?admin/developer");
+            exit();
         }
     }
 

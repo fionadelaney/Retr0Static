@@ -8,14 +8,8 @@ use Mattsmithdev\PdoCrud\DatabaseTable;
 $parent_directory = dirname( dirname(__FILE__) );
 define('TEMPLATE_DIRECTORY', $parent_directory . '/templates');
 
-//require_once __DIR__ . '/game.php';
-//require_once __DIR__ . '/watch.php';
-
 class MainController
 {
-
-   // public function aboutAction(\Twig_Environment $twig) - NOTE: About page
-    // was merged with index.php to create single landing page
 
     public function loginAction(\Twig_Environment $twig)
     {
@@ -52,8 +46,7 @@ class MainController
 
             }
 
-        }
-        else {
+        } else {
 
             $data = array( 'page_title' => 'Login' );
 
@@ -78,9 +71,10 @@ class MainController
             // end the session
             session_destroy();
             // redirect to home page
-            header("Location: " . "index.php");
+            header("Location: index.php");
             exit();
         }
+
     }
 
     public function registerAction(\Twig_Environment $twig)
@@ -163,7 +157,9 @@ class MainController
     public function screenAction(\Twig_Environment $twig)
     {
 
-        if ( Utility::isLoggedInFromSession() ) {
+        if (! Utility::isLoggedInFromSession() ) {
+            Utility::doLoginRedirect();
+        } else {
             $data = array(
                 'page_title' => 'Screen',
                 'active_page' => 'screen',
@@ -173,15 +169,13 @@ class MainController
             );
             print $twig->render('screen.html.twig', $data);
         }
-        else {
-            Utility::doLoginRedirect();
-        }
 
     }
 
     public function screenListingAction()
     {
         $watch_list = [];
+
         $watch_list[] = new Watch('246bioshock.jpg', 'Bioshock Playthrough',
             'https://www.youtube.com/watch?v=iScHVPjP1jU');
         $watch_list[] = new Watch('bioshock_ss.jpg', 'Bioshock Trailer',
@@ -192,11 +186,10 @@ class MainController
             'https://www.youtube.com/watch?v=Be6HXPBRwoQ');
         $watch_list[] = new Watch('reality_2.png', 'Sims2 Reality show by dkidluke',
             'https://www.youtube.com/watch?v=n8UOEt0-WqU&ebc=ANyPxKqJJ_png__4Fd8DBWajf_QtlCyUY_w-UDD6KAegELP26Eqfjj5qlU0QGm5X482pxeyEhk2qh83Yu8R7Zjsfn-EHTv6rgw');
-
         $watch_list[] = new Watch('mountain.png', 'Mountain Playthrough',
             'https://www.youtube.com/watch?v=Qd_x-S7IpHA');
         $watch_list[] = new Watch('Chili_Con_Carnage.jpg', 'Chili Con Carnage Trailer',
-        'https://www.youtube.com/watch?v=LhFeyJ00fdo');
+            'https://www.youtube.com/watch?v=LhFeyJ00fdo');
         $watch_list[] = new Watch('her2.JPG', 'Her The Movie Trailer',
             'http://www.davidoreilly.com/projects/her/');
         $watch_list[] = new Watch('baldursgate_ss.png', 'Baldurs Gate 2 Playthrough',
@@ -204,37 +197,60 @@ class MainController
         $watch_list[] = new Watch('reality_1.png', 'Bioshock',
             'https://www.youtube.com/watch?v=cKpKv8lGG9o');
 
-    return $watch_list;
-
+        return $watch_list;
     }
 
     public function newsAction(\Twig_Environment $twig)
     {
 
-        $rss = new \DOMDocument();
-        $rss->load('http://feeds.feedburner.com/GamasutraNews');
-        $feed = array();
-        foreach ($rss->getElementsByTagName('item') as $node) {
+        if (! Utility::isLoggedInFromSession() ) {
+            Utility::doLoginRedirect();
+        } else {
 
-            $content = $node->getElementsByTagName('description')->item(0)->nodeValue;
-            $dom = new \DOMDocument();
-            @$dom->loadHTML($content);
+            // Store RSS feed from Gamasutra using the DOMDocument class
+            // See: http://php.net/manual/en/class.domdocument.php
+            $rss = new \DOMDocument();
+            // Load the XML from Feedburner.com
+            $rss->load('http://feeds.feedburner.com/GamasutraNews');
+            // Array of feed elements to pass to the Twig template
+            $feed = array();
+            /*
+             * Process each element of the RSS feed.
+             *
+             *  <item>
+             *    <title>What does Nintendo need to do to make the NX a success?</title>
+             *    <link>http://feedproxy.google.com/~r/GamasutraNews/~3/DOXxjxWRhW8/What_does_Nintendo_need_to_do_to_make_the_NX_a_success.php</link>
+             *    <description>&lt;p&gt;&lt;img src="http://www.gamasutra.com/db_area/images/news/2016/May/272174/500_NOA.jpg" align="left" hspace="5"/&gt;What can Nintendo do ...</description>
+             *    <guid isPermaLink="false">http://www.gamasutra.com/view/news/272174</guid>
+             *    <pubDate>Fri, 6 May 2016 19:35:00 -0400</pubDate>
+             *    <feedburner:origLink>http://www.gamasutra.com/view/news/272174/What_does_Nintendo_need_to_do_to_make_the_NX_a_success.php</feedburner:origLink>
+             *  </item>
+             *
+             * Need to transform the content to present it in the news template - the images are different sizes which isn't ideal.
+             */
+            foreach ($rss->getElementsByTagName('item') as $node) {
 
-            $images = $dom->getElementsByTagName('img');
+                // Get the content from the <description> tag
+                $content = $node->getElementsByTagName('description')->item(0)->nodeValue;
+                $dom = new \DOMDocument();
+                @$dom->loadHTML($content);
+                // Get the images from the <description> tag content
+                $images = $dom->getElementsByTagName('img');
+                // Get the text of the <description> tag content
+                $text = preg_replace("/<img[^>]+\>/i", "", $node->getElementsByTagName('description')->item(0)->nodeValue);
+                // Add the elements to an array for use by the Twig template
+                $item = array (
+                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                    'image' => $images[0]->attributes['src']->nodeValue,
+                    'text' => $text,
+                    'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'date' => date('l F d, Y', strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue))
+                );
+                // Add item to feed array
+                array_push($feed, $item);
 
-            $text = preg_replace("/<img[^>]+\>/i", "", $node->getElementsByTagName('description')->item(0)->nodeValue);
+            }
 
-            $item = array (
-                'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                'image' => $images[0]->attributes['src']->nodeValue,
-                'text' => $text,
-                'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                'date' => date('l F d, Y', strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue))
-            );
-            array_push($feed, $item);
-        }
-
-        if ( Utility::isLoggedInFromSession() ) {
             $data = array(
                 'page_title' => 'News',
                 'active_page' => 'news',
@@ -242,10 +258,8 @@ class MainController
                 'isAdmin' => Utility::isUserAuthorised(),
                 'feed' => $feed
             );
+
             print $twig->render('news.html.twig', $data);
-        }
-        else {
-            Utility::doLoginRedirect();
         }
 
     }
@@ -253,7 +267,9 @@ class MainController
     public function insightAction(\Twig_Environment $twig)
     {
 
-        if ( Utility::isLoggedInFromSession() ) {
+        if (! Utility::isLoggedInFromSession() ) {
+            Utility::doLoginRedirect();
+        } else {
             $data = array(
                 'page_title' => 'Insight',
                 'active_page' => 'insight',
@@ -261,9 +277,6 @@ class MainController
                 'isAdmin' => Utility::isUserAuthorised()
             );
             print $twig->render('insight.html.twig', $data);
-        }
-        else {
-            Utility::doLoginRedirect();
         }
 
     }
@@ -285,8 +298,9 @@ class MainController
     public function shopAction(\Twig_Environment $twig)
     {
 
-        if ( Utility::isLoggedInFromSession() ) {
-
+        if (! Utility::isLoggedInFromSession() ) {
+            Utility::doLoginRedirect();
+        } else {
             $db = new ProductRepository;
 
             $data = array(
@@ -298,16 +312,15 @@ class MainController
             );
             print $twig->render('shop.html.twig', $data);
         }
-        else {
-            Utility::doLoginRedirect();
-        }
 
     }
 
     public function developerAction(\Twig_Environment $twig, $parameters=array())
     {
 
-        if ( Utility::isLoggedInFromSession() ) {
+        if (! Utility::isLoggedInFromSession() ) {
+            Utility::doLoginRedirect();
+        } else {
 
             $developer_id = filter_var( array_shift($parameters), FILTER_SANITIZE_NUMBER_INT );
 
@@ -334,51 +347,6 @@ class MainController
 
             print $twig->render('developer.html.twig', $data);
         }
-        else {
-            Utility::doLoginRedirect();
-        }
-
-    }
-
-    public function shopListingAction()
-    {
-        $game_list = [];
-        $game_list[] = new Game('BIG001', 'Bioshock','XBox 360 2007', '&euro; 6.00',
-        'bioshock_ss.jpg', 'Irrational Games', 'http://irrationalgames.com/tag/bioshock/',
-        'Fantasy 1st person shooter');
-
-        $game_list[] = new Game(' BIG002 ', 'Bioshock', 'PS3 2008', '&euro; 6.00', 'bioshock_ss.jpg',
-        'Irrational Games', 'http://irrationalgames.com/tag/bioshock/', 'Fantasy 1st person shooter');
-
-        $game_list[] = new Game('BIG003', 'Bioshock', 'Windows 2007', '&euro; 6.00', 'bioshock_ss.jpg',
-        'Irrational Games', 'http://irrationalgames.com/tag/bioshock/', 'Fantasy 1st person shooter');
-
-        $game_list[] = new Game(' CDG003 ','Chili Con Carnage','PSP 2007','&euro; 6.00','chili.jpg',
-        'Deadline Games [Defunct] ', 'http://www.mobygames.com/company/deadline-games-as/','Comedy Action 3rd person shooter');
-
-        $game_list[] = new Game(' IE005 ', 'Baldur\'s Gate II',' Windows ','&euro; 6.00','baldursgate_ss.png',
-        'Interplay Ent Corp ', ' http://www.interplay.com/ ',' Fantasy CRPG ');
-
-        $game_list[] = new Game(' SEA004 ', ' The Sims 2 ', ' Nintendo DS 2005 ','&euro; 6.00','sims2_ss.jpg',
-        ' Electronic Arts ',' http://www.ea.com/ ',' Life Simulation ');
-
-        $game_list[] = new Game(' SEA007 ',' The Sims 2 ',' GameCube 2005 ','&euro; 6.00', 'sims2_ss.jpg',
-        ' Electronic Arts ', ' http://www.ea.com/ ',' Life Simulation ');
-
-        $game_list[] = new Game(' PHMR02 ',' Prince of Persia ',' Sega Master System 1992 ','&euro; 26.00',
-        'prince_persia_ss.png',' Broderbund Software [defunct]  ',
-        ' http://www.mobygames.com/company/brderbund-software-inc/ ',' Fantasy ');
-
-        $game_list[] = new Game(' PHMR75 ', ' Prince of Persia ',' Gameboy Color 1999 ','&euro; 26.00',
-        'prince_persia_ss.png', ' Broderbund Software [defunct]  ',
-        ' http://www.mobygames.com/company/brderbund-software-inc/',' Fantasy ');
-
-        $game_list[] = new Game(' PHMR08 ', ' Prince of Persia ',' Amstrad PCP 1990 ','&euro; 26.00',
-        'prince_persia_ss.png', ' Broderbund Software [defunct]  ',
-        ' http://www.mobygames.com/company/brderbund-software-inc/ ',' Fantasy ');
-
-
-        return $game_list;
 
     }
 
