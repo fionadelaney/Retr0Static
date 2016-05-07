@@ -25,6 +25,11 @@ $twig = new Twig_Environment($loader);
 $action_url_function = new Twig_SimpleFunction('action_url', function ($action) {
     $base_url = '/';
     switch ($action) {
+        case 'admin' :
+        case 'admin/user' :
+        case 'admin/product' :
+        case 'admin/developer' :
+        case 'admin/video' :
         case 'login' :
         case 'logout' :
         case 'register' :

@@ -73,6 +73,7 @@ class UserController
     {
         $db = new UserRepository;
         $data = array(
+        	'active_page' => 'admin/user',
             'username' => Utility::usernameFromSession(),
             'user_list' => $db->getAll()
         );
@@ -189,6 +190,7 @@ class UserController
     public function showFormAction(\Twig_Environment $twig, User $user)
     {
         $data = array(
+        	'active_page' => 'admin/user',
             'username' => Utility::usernameFromSession(),
             'user' => $user
         );

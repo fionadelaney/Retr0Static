@@ -69,9 +69,14 @@ class DeveloperController
      */
     public function indexAction(\Twig_Environment $twig)
     {
-        $data = array( 'username' => Utility::usernameFromSession() );
         $db = new DeveloperRepository;
-        $data['developer_list'] = $db->getAll();
+        $data = array(
+        	'active_page' => 'admin/developer', 
+        	'username' => Utility::usernameFromSession() 
+            'developer_list' => $db->getAll()
+        );
+
+
         print $twig->render('admin/developer-list.html.twig', $data);
     }
 
@@ -172,7 +177,8 @@ class DeveloperController
     {
         $data = array(
             'username' => Utility::usernameFromSession(),
-            'developer' => $developer
+            'developer' => $developer,
+            'active_page' => 'admin/developer'
         );
 
         print $twig->render('admin/developer-form.html.twig', $data);

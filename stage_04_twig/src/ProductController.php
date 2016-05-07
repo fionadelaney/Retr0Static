@@ -72,9 +72,13 @@ class ProductController
      */
     public function indexAction(\Twig_Environment $twig)
     {
-        $data = array( 'username' => Utility::usernameFromSession() );
-        $db = new ProductRepository;
-        $data['product_list'] = $db->getAll();
+    	$db = new ProductRepository;
+        $data = array( 'username' => Utility::usernameFromSession(), 
+                	   'active_page' => 'admin/product',
+                	   'product_list' => $db->getAll()
+                	   );
+
+
         print $twig->render('admin/product-list.html.twig', $data);
     }
 
@@ -186,6 +190,7 @@ class ProductController
     public function showFormAction(\Twig_Environment $twig, Product $product)
     {
         $data = array(
+            'active_page' => 'admin/product',
             'username' => Utility::usernameFromSession(),
             'product' => $product
         );

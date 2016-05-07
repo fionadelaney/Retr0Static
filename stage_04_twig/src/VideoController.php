@@ -55,9 +55,14 @@ class VideoController
 
     public function indexAction(\Twig_Environment $twig)
     {
-        $data = array( 'username' => Utility::usernameFromSession() );
-        $db = new \Phizzle\VideoRepository;
-        $data['video_list'] = $db->getAll();
+    	$db = new \Phizzle\VideoRepository;
+        $data = array( 
+                'active_page' => 'admin/video',
+        		'username' => Utility::usernameFromSession(),
+                'video_list' = $db->getAll()
+        );
+
+
         print $twig->render('admin/video-list.html.twig', $data);
     }
 
@@ -141,6 +146,7 @@ class VideoController
     public function showFormAction(\Twig_Environment $twig, \Phizzle\Video $video)
     {
         $data = array(
+            'active_page' => 'admin/video',
             'username' => Utility::usernameFromSession(),
             'video' => $video
         );
@@ -153,6 +159,7 @@ class VideoController
         $db = new \Phizzle\VideoRepository;
 
         $data = array(
+    
             'username' => Utility::usernameFromSession(),
             'video' => $db->getOneById($video_id)
         );
