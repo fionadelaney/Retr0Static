@@ -1,0 +1,17 @@
+TAP version 13
+ok 1 - ItbTests\MainControllertTest::testIndex
+ok 2 - ItbTests\MainControllertTest::testAbout
+ok 3 - ItbTests\MainControllertTest::testList
+ok 4 - ItbTests\MainControllertTest::testListTextFromDatabaseItems with data set #0 ('product name = carrots', 'price = 7.50')
+ok 5 - ItbTests\MainControllertTest::testListTextFromDatabaseItems with data set #1 ('product name = eggs', 'price = 9.99')
+ok 6 - ItbTests\MainControllertTest::testShowAction
+ok 7 - ItbTests\MainControllertTest::testNotRecordForIdError
+ok 8 - ItbTests\MainControllertTest::testNotIntegerError
+ok 9 - ItbTests\MainControllertTest::testNotRecordForIdErrorViaShowAction
+ok 10 - ItbTests\ProductTest::testCanCreateProduct
+ok 11 - ItbTests\ProductTest::testSetGetId
+ok 12 - ItbTests\ProductTest::testSetGetName
+ok 13 - ItbTests\ProductTest::testSetGetPrice
+ok 14 - ItbTests\UserControllertTest::testGetLogin
+ok 15 - ItbTests\UserControllertTest::testPostLogin
+1..15

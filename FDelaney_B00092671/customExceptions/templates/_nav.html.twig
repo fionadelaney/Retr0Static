@@ -1,0 +1,46 @@
+
+{% if username is defined %}
+You are logged-in as: {{ username }}
+<br>
+<a href="/logout">(logout)</a>
+{% else %}
+    <a href="/login">login</a>
+{% endif %}
+
+<hr>
+
+{# ---------------- main nav bar ------------------ #}
+<nav>
+    <ul>
+        <li>
+            <a href="/">
+                home
+            </a>
+        </li>
+        <li>
+            <a href="/about">
+                about
+            </a>
+        </li>
+        <li>
+            <a href="/list">
+                list
+            </a>
+        </li>
+    </ul>
+</nav>
+
+{# ---------------- admin nav bar ------------------ #}
+{% if userRole is defined and userRole == 'admin' %}
+<nav>
+    <ul>
+        <li>
+            <a href="/adminHome">
+                secret admin HOME PAGE LINK
+            </a>
+        </li>
+    </ul>
+</nav>
+{% else %}
+    (you can't see admin nav links - since you don't have the admin role)
+{% endif %}

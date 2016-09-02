@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpunit bootstrap="./vendor/autoload.php">
+
+    <testsuites>
+        <testsuite name="The project's test suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <const name="DB_HOST" value="localhost"/>
+        <const name="DB_NAME" value="tuesday"/>
+        <const name="DB_USER" value="matt"/>
+        <const name="DB_PASS" value="smith"/>
+    </php>
+</phpunit>

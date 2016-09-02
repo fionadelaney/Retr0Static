@@ -1,0 +1,26 @@
+
+
+{% extends '_layout.html.twig' %}
+
+{% block pageTitle %}
+    home
+{% endblock %}
+
+{% block content %}
+    <h1>List of products</h1>
+
+    {% for product in products %}
+
+        <p>
+            product name = {{ product.name }}
+            <br>
+            price = {{ product.price | number_format(2) }}
+
+            <br>
+            <a href="/show/{{ product.id }}">
+            (details)
+            </a>
+        </p>
+    {% endfor %}
+
+{% endblock %}

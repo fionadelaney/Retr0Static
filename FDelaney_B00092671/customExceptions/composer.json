@@ -1,0 +1,19 @@
+{
+  "autoload":{
+    "psr-4":{
+      "Itb\\":"src",
+      "Itb\\Exception\\":"src/exceptions"
+    }
+  },
+  "require": {
+    "twig/twig": "^1.24",
+    "mattsmithdev/pdo-crud-for-free": "dev-master",
+    "phpunit/phpunit": "^5.4",
+    "silex/silex": "^2.0"
+  },
+  "scripts":{
+    "test":    "php phpunit.phar --log-tap ./tests/log.txt",
+    "coverage":"php phpunit.phar --log-tap ./tests/log.txt --coverage-html ./tests/coverage",
+    "phpdoc": "php phpDocumentor.phar -d ./src -t ./src/documentation --template=responsive-twig"
+  }
+}

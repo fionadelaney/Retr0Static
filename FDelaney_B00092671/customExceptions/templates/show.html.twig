@@ -1,0 +1,22 @@
+
+
+{% extends '_layout.html.twig' %}
+
+{% block pageTitle %}
+    home
+{% endblock %}
+
+{% block content %}
+    <h1>Show one product</h1>
+
+        <p>
+            <br>
+            id= {{ product.id }}
+            <br>
+            product name = {{ product.name }}
+            <br>
+            price = {{ product.price | number_format(2) }}
+
+        </p>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>
+        MGW - {% block pageTitle %}{% endblock %}
+    </title>
+    <meta charset="utf-8">
+
+    <style>
+        nav ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            list-style-type: none;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+{% include '_nav.html.twig' %}
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
